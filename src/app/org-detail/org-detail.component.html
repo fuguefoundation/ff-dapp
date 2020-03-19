@@ -1,0 +1,22 @@
+<div *ngIf="org">
+    <mat-card class="example-card">
+    <mat-card-header>
+        <div mat-card-avatar class="example-header-image"></div>
+        <mat-card-title>{{org.name | uppercase}}</mat-card-title>
+        <mat-card-subtitle>{{org.group}}</mat-card-subtitle>
+    </mat-card-header>
+    <img mat-card-image src="https://material.angular.io/assets/img/examples/shiba2.jpg" alt="Photo of a Shiba Inu">
+    <mat-card-content>
+        <p>
+        {{org.desc}}
+        </p>
+    </mat-card-content>
+    <mat-card-actions>
+        <button mat-button>LIKE</button>
+        <button mat-button>SHARE</button>
+    </mat-card-actions>
+    </mat-card>
+    <button (click)="goBack()">go back</button>
+
+</div>
+

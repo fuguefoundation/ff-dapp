@@ -1,0 +1,9 @@
+<h2>Organizations</h2>
+<app-org-search></app-org-search>
+<ul class="orgs">
+  <li *ngFor="let org of orgs">
+    <a routerLink="/detail/{{org.id}}">
+      <span class="badge">{{org.id}}</span> {{org.name}}
+    </a>
+  </li>
+</ul>

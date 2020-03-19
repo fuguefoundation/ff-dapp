@@ -1,0 +1,9 @@
+<h3>Org Groups</h3>
+<mat-grid-list cols="2" rowHeight="2:1">
+    <a *ngFor="let group of groups" class="col-1-4"
+    routerLink="/group/{{group.id}}">
+        <mat-grid-tile [style.background]="group.color">{{group.name}}</mat-grid-tile>
+    </a>
+</mat-grid-list>
+
+<app-data></app-data>
