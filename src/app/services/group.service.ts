@@ -73,7 +73,7 @@ export class GroupService {
     };
   }
 
-  /** Log a OrgService message with the MessageService */
+  /** Log a GroupService message with the MessageService */
   private log(message: string) {
     this.messageService.add(`GroupService: ${message}`);
   }

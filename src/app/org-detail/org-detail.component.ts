@@ -25,7 +25,9 @@ export class OrgDetailComponent implements OnInit {
   getOrg(): void {
     const id = +this.route.snapshot.paramMap.get('id');
     this.orgService.getOrg(id)
-      .subscribe(org => this.org = org);
+      .subscribe(org => {
+          this.org = org;
+        });
   }
 
   goBack(): void {

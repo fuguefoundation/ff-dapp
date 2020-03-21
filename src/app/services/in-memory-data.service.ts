@@ -8,14 +8,14 @@ import { Injectable } from '@angular/core';
 export class InMemoryDataService implements InMemoryDbService {
   createDb() {
     const orgs = [
-      { id: 11, name: 'Give Directly', group: 'group1', desc: 'Description' },
-      { id: 12, name: 'Malaria Consortium', group: 'group1', desc: 'Description' },
-      { id: 13, name: 'Against Malaria Foundation', group: 'group2', desc: 'Description' },
-      { id: 14, name: 'Helen Keller International', group: 'group2', desc: 'Description' },
-      { id: 15, name: 'Deworm the World Initiative', group: 'group3', desc: 'Description' },
-      { id: 16, name: 'SCI Foundation', group: 'group3', desc: 'Description' },
-      { id: 17, name: 'Sightsavers', group: 'group4', desc: 'Description' },
-      { id: 18, name: 'END Fund', group: 'group4', desc: 'Description' }
+      { id: 11, name: 'Give Directly', groupId: 1, desc: 'Description' },
+      { id: 12, name: 'Malaria Consortium', groupId: 1, desc: 'Description' },
+      { id: 13, name: 'Against Malaria Foundation', groupId: 2, desc: 'Description' },
+      { id: 14, name: 'Helen Keller International', groupId: 2, desc: 'Description' },
+      { id: 15, name: 'Deworm the World Initiative', groupId: 3, desc: 'Description' },
+      { id: 16, name: 'SCI Foundation', groupId: 3, desc: 'Description' },
+      { id: 17, name: 'Sightsavers', groupId: 4, desc: 'Description' },
+      { id: 18, name: 'END Fund', groupId: 4, desc: 'Description' }
     ];
     const groups = [
         { id: 1, name: 'Group 1', desc: 'Description Group 1', color: 'grey'},

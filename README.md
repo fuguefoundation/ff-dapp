@@ -14,6 +14,12 @@ Run `ng e2e` to execute the end-to-end tests via [Protractor](http://www.protrac
 # TODO
 
 Phase 1
+Expand Search/Filter Capabilities
+HTTP request pulls in an object to be parsed, which is then rendered as a searchable/filterable table. Help improve the functionality and UX.
+
+Required
+
+
 1. Improve UX/UI throughout (Angular Material)
     - Menu
     - Dashboard, Org, About pages
@@ -41,3 +47,10 @@ This is an open source project. Contributions are welcomed & encouraged! :smile:
 * [Angular CLI](https://github.com/angular/angular-cli)
 * [Truffle](http://truffleframework.com/docs/)
 * [Open Zeppelin](https://docs.openzeppelin.com/openzeppelin/)
+
+Name
+Description
+Pricing/hour
+Experience Level
+Bounty Type
+Keywords

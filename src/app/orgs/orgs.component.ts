@@ -1,6 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { Org } from '../models/org';
 import { OrgService } from '../services/org.service';
+import {MatSort} from '@angular/material/sort';
+import {MatTableDataSource} from '@angular/material/table';
 
 @Component({
   selector: 'app-orgs',
@@ -10,7 +12,11 @@ import { OrgService } from '../services/org.service';
 export class OrgsComponent implements OnInit {
 
     orgs: Org[];
-  
+    selectedOrg: Org;
+    displayedColumns: string[] = ['id', 'name', 'groupId', 'desc'];
+    dataSource: MatTableDataSource<Org>;
+    @ViewChild(MatSort, {static: true}) sort: MatSort;
+
     constructor(private orgService: OrgService) { }
   
     ngOnInit() {
@@ -19,7 +25,16 @@ export class OrgsComponent implements OnInit {
 
     getOrgs(): void {
         this.orgService.getOrgs()
-            .subscribe(orgs => this.orgs = orgs);
+            .subscribe(orgs => {
+                this.orgs = orgs;
+                this.dataSource = new MatTableDataSource(orgs);
+                this.dataSource.sort = this.sort;             
+            });
     }
+
+    applyFilter(event: Event) {
+        const filterValue = (event.target as HTMLInputElement).value;
+        this.dataSource.filter = filterValue.trim().toLowerCase();
+      }
 
 }

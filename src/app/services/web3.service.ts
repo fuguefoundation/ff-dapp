@@ -3,6 +3,7 @@ import {Subject} from 'rxjs';
 declare let require: any;
 const Web3 = require('web3');
 const contract = require('@truffle/contract');
+import { MessageService } from './message.service';
 
 declare let window: any;
 
@@ -14,7 +15,7 @@ export class Web3Service {
 
   public accountsObservable = new Subject<string[]>();
 
-  constructor() {
+  constructor(private messageService: MessageService) {
     window.addEventListener('load', (event) => {
       this.bootstrapWeb3();
     });
@@ -36,7 +37,7 @@ export class Web3Service {
       this.web3 = new Web3(new Web3.providers.HttpProvider('http://localhost:8545'));
     }
 
-    setInterval(() => this.refreshAccounts(), 100);
+    setInterval(() => this.refreshAccounts(), 5000);
   }
 
   public async artifactsToContract(artifacts) {
@@ -48,6 +49,7 @@ export class Web3Service {
 
     const contractAbstraction = contract(artifacts);
     contractAbstraction.setProvider(this.web3.currentProvider);
+    this.log('artifactsToContract called');
     return contractAbstraction;
 
   }
@@ -70,5 +72,10 @@ export class Web3Service {
     }
 
     this.ready = true;
+  }
+
+  /** Log a OrgService message with the MessageService */
+  private log(message: string) {
+    this.messageService.add(`Web3Service: ${message}`);
   }
 }

@@ -1,3 +1,15 @@
+/* Structure */
+table {
+  width: 100%;
+}
+.mat-form-field {
+  font-size: 14px;
+  width: 100%;
+}
+th.mat-sort-header-sorted {
+  color: black;
+}
+
 /* orgsComponent's private CSS styles */
 .orgs {
   margin: 0 0 2em 0;
@@ -49,3 +61,4 @@
   margin-right: .8em;
   border-radius: 4px 0 0 4px;
 }
+

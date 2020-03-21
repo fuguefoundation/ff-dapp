@@ -10,6 +10,13 @@ import { GroupService } from '../services/group.service';
 export class DashboardComponent implements OnInit {
   groups: Group[] = [];
 
+  //MatRipple
+  centered = false;
+  disabled = false;
+  unbounded = false;
+  radius: number;
+  color: string;
+
   constructor(private groupService: GroupService) { }
 
   ngOnInit() {

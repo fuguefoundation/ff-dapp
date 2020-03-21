@@ -1,6 +1,6 @@
 export interface Org {
     id: number;
     name: string;
-    group: string;
+    groupId: number;
     desc: string;
   }

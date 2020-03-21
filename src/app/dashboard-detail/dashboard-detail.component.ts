@@ -1,9 +1,10 @@
 import { Component, OnInit, Input } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { Router, ActivatedRoute } from '@angular/router';
 import { Location } from '@angular/common';
 import { Group } from '../models/group';
 import { GroupService } from '../services/group.service';
-//import { Web3Service } from '../services/web3.service';
+import { Org } from '../models/org';
+import { OrgService } from '../services/org.service';
 
 @Component({
   selector: 'app-dashboard-detail',
@@ -13,12 +14,15 @@ import { GroupService } from '../services/group.service';
 
 export class DashboardDetailComponent implements OnInit {
   group: Group;
+  orgs: Org[];
+  NFT: any;
 
   constructor(
     private route: ActivatedRoute,
+    private router: Router,
     private groupService: GroupService,
     private location: Location,
-    //private web3Service: Web3Service
+    private orgService: OrgService
   ) {}
 
   ngOnInit(): void {
@@ -30,11 +34,27 @@ export class DashboardDetailComponent implements OnInit {
     this.groupService.getGroup(id)
       .subscribe(group => {
           this.group = group;
+          this.getOrgs();           
       });
   }
 
-  metamask(): void {
+    getOrgs(): void {
+        this.orgService.getOrgs()
+            .subscribe(orgs => {
+                this.orgs = orgs;
+                this.route.params.subscribe(params => {
+                    orgs.forEach((o: Org) => {
+                      if (o.groupId == params.id) {
+                        console.log(o);
+                      }
+                    });
+                  });            
+            });
+    }
+
+  web3Donate(id): void {
       console.log('metamask');
+      this.router.navigateByUrl('donate/' + id)
   }
 
   goBack(): void {
