@@ -1,6 +1,6 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { Org } from '../models/org';
-import { OrgService } from '../services/org.service';
+import { OrgsService } from '../services/orgs.service';
 import {MatSort} from '@angular/material/sort';
 import {MatTableDataSource} from '@angular/material/table';
 
@@ -17,14 +17,14 @@ export class OrgsComponent implements OnInit {
     dataSource: MatTableDataSource<Org>;
     @ViewChild(MatSort, {static: true}) sort: MatSort;
 
-    constructor(private orgService: OrgService) { }
+    constructor(private orgsService: OrgsService) { }
   
     ngOnInit() {
         this.getOrgs();
     }
 
     getOrgs(): void {
-        this.orgService.getOrgs()
+        this.orgsService.getOrgs()
             .subscribe(orgs => {
                 this.orgs = orgs;
                 this.dataSource = new MatTableDataSource(orgs);

@@ -10,7 +10,7 @@
 
   <ul class="search-result">
     <li *ngFor="let org of orgs$ | async" >
-      <a routerLink="/detail/{{org.id}}">
+      <a routerLink="/orgs/{{org.id}}">
         {{org.name}}
       </a>
     </li>

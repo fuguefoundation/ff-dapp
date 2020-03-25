@@ -1,0 +1,18 @@
+<div *ngIf="evaluator">
+  <button mat-raised-button (click)="goBack()"><mat-icon>navigate_before</mat-icon>Back</button>
+  <h2>{{evaluator.name | uppercase}} Details</h2>
+  <div><span>ID: </span>{{evaluator.id}}</div>
+  <div><span>Desc: </span>{{evaluator.desc}}</div>
+
+  <br>
+  
+  <div *ngFor="let org of orgs">
+    <div><span>ID: </span>{{org.id}}</div>
+    <div><span>Name: </span>{{org.name}}</div>
+    <div><span>Evaluator ID: </span>{{org.evaluatorId}}</div>
+    <div><span>Desc: </span>{{org.desc}}</div>  
+  </div>
+
+  <button mat-raised-button (click)="web3Donate(evaluator.id)">Donate</button>
+
+</div>

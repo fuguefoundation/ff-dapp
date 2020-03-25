@@ -45,3 +45,7 @@ h1.example-app-name {
 mat-sidenav-content {
     padding: 1%;
 }
+.mat-toolbar.mat-primary {
+    background: #b31121;
+    color: #fff;
+}

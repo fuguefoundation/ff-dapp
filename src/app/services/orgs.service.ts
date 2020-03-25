@@ -5,11 +5,11 @@ import { Observable, of } from 'rxjs';
 import { catchError, map, tap } from 'rxjs/operators';
 
 import { Org } from '../models/org';
-import { MessageService } from './message.service';
+import { DebugService } from './debug.service';
 
 
 @Injectable({ providedIn: 'root' })
-export class OrgService {
+export class OrgsService {
 
   private orgsUrl = 'api/orgs';  // URL to web api
 
@@ -19,7 +19,7 @@ export class OrgService {
 
   constructor(
     private http: HttpClient,
-    private messageService: MessageService) { }
+    private debugService: DebugService) { }
 
   /** GET orgs from the server */
   getOrgs (): Observable<Org[]> {
@@ -115,8 +115,8 @@ export class OrgService {
     };
   }
 
-  /** Log a OrgService message with the MessageService */
+  /** Log a OrgService message with the debugService */
   private log(message: string) {
-    this.messageService.add(`OrgService: ${message}`);
+    this.debugService.add(`OrgService: ${message}`);
   }
 }

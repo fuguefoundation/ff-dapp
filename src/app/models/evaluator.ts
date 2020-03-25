@@ -1,4 +1,4 @@
-export interface Group {
+export interface Evaluator {
     id: number;
     name: string;
     desc: string;

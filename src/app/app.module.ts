@@ -16,11 +16,11 @@ import { UtilsModule } from './services/utils.module';
 import { AppComponent } from './app.component';
 import { OrgsComponent } from './orgs/orgs.component';
 import { OrgDetailComponent } from './org-detail/org-detail.component';
-import { MessagesComponent } from './messages/messages.component';
-import { DashboardComponent } from './dashboard/dashboard.component';
 import { OrgSearchComponent } from './org-search/org-search.component';
+import { DebugComponent } from './debug/debug.component';
+import { EvaluatorsComponent } from './evaluators/evaluators.component';
+import { EvaluatorDetailComponent } from './evaluator-detail/evaluator-detail.component';
 import { AboutComponent } from './about/about.component';
-import { DashboardDetailComponent } from './dashboard-detail/dashboard-detail.component';
 import { DataComponent } from './data/data.component';
 import { NavComponent } from './nav/nav.component';
 import { DonateComponent } from './donate/donate.component';
@@ -45,11 +45,11 @@ import { DonateComponent } from './donate/donate.component';
     AppComponent,
     OrgsComponent,
     OrgDetailComponent,
-    MessagesComponent,
-    DashboardComponent,
+    DebugComponent,
+    EvaluatorsComponent,
     OrgSearchComponent,
     AboutComponent,
-    DashboardDetailComponent,
+    EvaluatorDetailComponent,
     DataComponent,
     NavComponent,
     DonateComponent

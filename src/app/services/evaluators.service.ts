@@ -4,14 +4,14 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable, of } from 'rxjs';
 import { catchError, map, tap } from 'rxjs/operators';
 
-import { Group } from '../models/group';
-import { MessageService } from './message.service';
+import { Evaluator } from '../models/evaluator';
+import { DebugService } from './debug.service';
 
 
 @Injectable({ providedIn: 'root' })
-export class GroupService {
+export class EvaluatorsService {
 
-  private groupsUrl = 'api/groups';  // URL to web api
+  private evaluatorsUrl = 'api/evaluators';  // URL to web api
 
   httpOptions = {
     headers: new HttpHeaders({ 'Content-Type': 'application/json' })
@@ -19,37 +19,37 @@ export class GroupService {
 
   constructor(
     private http: HttpClient,
-    private messageService: MessageService) { }
+    private debugService: DebugService) { }
 
-  /** GET groups from the server */
-  getGroups (): Observable<Group[]> {
-    return this.http.get<Group[]>(this.groupsUrl)
+  /** GET evaluators from the server */
+  getEvaluators (): Observable<Evaluator[]> {
+    return this.http.get<Evaluator[]>(this.evaluatorsUrl)
       .pipe(
-        tap(_ => this.log('fetched groups')),
-        catchError(this.handleError<Group[]>('getOrgs', []))
+        tap(_ => this.log('fetched evaluators')),
+        catchError(this.handleError<Evaluator[]>('getOrgs', []))
       );
   }
 
   /** GET org by id. Return `undefined` when id not found */
-  getGroupNo404<Data>(id: number): Observable<Group> {
-    const url = `${this.groupsUrl}/?id=${id}`;
-    return this.http.get<Group[]>(url)
+  getEvaluatorNo404<Data>(id: number): Observable<Evaluator> {
+    const url = `${this.evaluatorsUrl}/?id=${id}`;
+    return this.http.get<Evaluator[]>(url)
       .pipe(
-        map(groups => groups[0]), // returns a {0|1} element array
+        map(evaluators => evaluators[0]), // returns a {0|1} element array
         tap(h => {
           const outcome = h ? `fetched` : `did not find`;
           this.log(`${outcome} org id=${id}`);
         }),
-        catchError(this.handleError<Group>(`getGroup id=${id}`))
+        catchError(this.handleError<Evaluator>(`getEvaluator id=${id}`))
       );
   }
 
   /** GET org by id. Will 404 if id not found */
-  getGroup(id: number): Observable<Group> {
-    const url = `${this.groupsUrl}/${id}`;
-    return this.http.get<Group>(url).pipe(
-      tap(_ => this.log(`fetched org id=${id}`)),
-      catchError(this.handleError<Group>(`getGroup id=${id}`))
+  getEvaluator(id: number): Observable<Evaluator> {
+    const url = `${this.evaluatorsUrl}/${id}`;
+    return this.http.get<Evaluator>(url).pipe(
+      tap(_ => this.log(`fetched evaluator id=${id}`)),
+      catchError(this.handleError<Evaluator>(`getEvaluator id=${id}`))
     );
   }
 
@@ -73,8 +73,8 @@ export class GroupService {
     };
   }
 
-  /** Log a GroupService message with the MessageService */
+  /** Log a EvaluatorsService message with the DebugService */
   private log(message: string) {
-    this.messageService.add(`GroupService: ${message}`);
+    this.debugService.add(`EvaluatorsService: ${message}`);
   }
 }

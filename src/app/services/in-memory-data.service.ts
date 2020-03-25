@@ -8,23 +8,23 @@ import { Injectable } from '@angular/core';
 export class InMemoryDataService implements InMemoryDbService {
   createDb() {
     const orgs = [
-      { id: 11, name: 'Give Directly', groupId: 1, desc: 'Description' },
-      { id: 12, name: 'Malaria Consortium', groupId: 1, desc: 'Description' },
-      { id: 13, name: 'Against Malaria Foundation', groupId: 2, desc: 'Description' },
-      { id: 14, name: 'Helen Keller International', groupId: 2, desc: 'Description' },
-      { id: 15, name: 'Deworm the World Initiative', groupId: 3, desc: 'Description' },
-      { id: 16, name: 'SCI Foundation', groupId: 3, desc: 'Description' },
-      { id: 17, name: 'Sightsavers', groupId: 4, desc: 'Description' },
-      { id: 18, name: 'END Fund', groupId: 4, desc: 'Description' }
+      { id: 11, name: 'Give Directly', evaluatorId: 1, desc: 'Description' },
+      { id: 12, name: 'Malaria Consortium', evaluatorId: 1, desc: 'Description' },
+      { id: 13, name: 'Against Malaria Foundation', evaluatorId: 2, desc: 'Description' },
+      { id: 14, name: 'Helen Keller International', evaluatorId: 2, desc: 'Description' },
+      { id: 15, name: 'Deworm the World Initiative', evaluatorId: 3, desc: 'Description' },
+      { id: 16, name: 'SCI Foundation', evaluatorId: 3, desc: 'Description' },
+      { id: 17, name: 'Sightsavers', evaluatorId: 4, desc: 'Description' },
+      { id: 18, name: 'END Fund', evaluatorId: 4, desc: 'Description' }
     ];
-    const groups = [
-        { id: 1, name: 'Group 1', desc: 'Description Group 1', color: 'grey'},
-        { id: 2, name: 'Group 2', desc: 'Description Group 2', color: 'lightblue'},
-        { id: 3, name: 'Group 3', desc: 'Description Group 3', color: 'lightgreen'},
-        { id: 4, name: 'Group 4', desc: 'Description Group 4', color: 'brown'}
+    const evaluators = [
+        { id: 1, name: 'Evaluator 1', desc: 'Description Evaluator 1', color: '#ffffff'},
+        { id: 2, name: 'Evaluator 2', desc: 'Description Evaluator 2', color: 'gray'},
+        { id: 3, name: 'Evaluator 3', desc: 'Description Evaluator 3', color: '#000000'},
+        { id: 4, name: 'Evaluator 4', desc: 'Description Evaluator 4', color: '#b31121'}
 
     ];
-    return {orgs, groups};
+    return {orgs, evaluators};
   }
 
   // Overrides the genId method to ensure that a org always has an id.

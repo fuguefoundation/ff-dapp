@@ -1,0 +1,8 @@
+<div *ngIf="debugService.messages.length">
+
+  <h2>Debugger</h2>
+  <button class="clear"
+          (click)="debugService.clear()">clear</button>
+  <div *ngFor='let message of debugService.messages'> {{message}} </div>
+
+</div>

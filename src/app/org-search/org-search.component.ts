@@ -5,7 +5,7 @@ import { Observable, Subject } from 'rxjs';
 import {debounceTime, distinctUntilChanged, switchMap} from 'rxjs/operators';
 
 import { Org } from '../models/org';
-import { OrgService } from '../services/org.service';
+import { OrgsService } from '../services/orgs.service';
 
 @Component({
   selector: 'app-org-search',
@@ -16,7 +16,7 @@ export class OrgSearchComponent implements OnInit {
   orgs$: Observable<Org[]>;
   private searchTerms = new Subject<string>();
 
-  constructor(private orgService: OrgService) {}
+  constructor(private orgsService: OrgsService) {}
 
   // Push a search term into the observable stream.
   search(term: string): void {
@@ -32,7 +32,7 @@ export class OrgSearchComponent implements OnInit {
       distinctUntilChanged(),
 
       // switch to new search observable each time the term changes
-      switchMap((term: string) => this.orgService.searchOrgs(term)),
+      switchMap((term: string) => this.orgsService.searchOrgs(term)),
     );
   }
 }

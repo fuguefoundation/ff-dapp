@@ -1,51 +1,51 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 import { Location } from '@angular/common';
-import { Group } from '../models/group';
-import { GroupService } from '../services/group.service';
+import { Evaluator } from '../models/evaluator';
+import { EvaluatorsService } from '../services/evaluators.service';
 import { Org } from '../models/org';
-import { OrgService } from '../services/org.service';
+import { OrgsService } from '../services/orgs.service';
 
 @Component({
-  selector: 'app-dashboard-detail',
-  templateUrl: './dashboard-detail.component.html',
-  styleUrls: ['./dashboard-detail.component.css']
+  selector: 'app-evaluator-detail',
+  templateUrl: './evaluator-detail.component.html',
+  styleUrls: ['./evaluator-detail.component.css']
 })
 
-export class DashboardDetailComponent implements OnInit {
-  group: Group;
-  orgs: Org[];
+export class EvaluatorDetailComponent implements OnInit {
+  evaluator: Evaluator;
+  orgs: Org[] = [];
   NFT: any;
 
   constructor(
     private route: ActivatedRoute,
     private router: Router,
-    private groupService: GroupService,
+    private evaluatorsService: EvaluatorsService,
     private location: Location,
-    private orgService: OrgService
+    private orgsService: OrgsService
   ) {}
 
   ngOnInit(): void {
-    this.getGroup();
+    this.getEvaluator();
   }
 
-  getGroup(): void {
+  getEvaluator(): void {
     const id = +this.route.snapshot.paramMap.get('id');
-    this.groupService.getGroup(id)
-      .subscribe(group => {
-          this.group = group;
+    this.evaluatorsService.getEvaluator(id)
+      .subscribe(evaluator => {
+          this.evaluator = evaluator;
           this.getOrgs();           
       });
   }
 
     getOrgs(): void {
-        this.orgService.getOrgs()
+        this.orgsService.getOrgs()
             .subscribe(orgs => {
-                this.orgs = orgs;
+                //this.orgs = orgs;
                 this.route.params.subscribe(params => {
                     orgs.forEach((o: Org) => {
-                      if (o.groupId == params.id) {
-                        console.log(o);
+                      if (o.evaluatorId == params.id) {
+                          this.orgs.push(o);
                       }
                     });
                   });            

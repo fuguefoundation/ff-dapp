@@ -11,7 +11,7 @@ input {
   font-size: 1em;
   padding-left: .4em;
 }
-button {
+/* button {
   margin-top: 20px;
   font-family: Arial;
   background-color: #eee;
@@ -28,4 +28,4 @@ button:disabled {
   background-color: #eee;
   color: #ccc;
   cursor: auto;
-}
+} */

@@ -2,7 +2,7 @@ import { Component, OnInit, Input } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Location } from '@angular/common';
 import { Org } from '../models/org';
-import { OrgService } from '../services/org.service';
+import { OrgsService } from '../services/orgs.service';
 
 @Component({
   selector: 'app-org-detail',
@@ -14,7 +14,7 @@ export class OrgDetailComponent implements OnInit {
 
   constructor(
     private route: ActivatedRoute,
-    private orgService: OrgService,
+    private orgsService: OrgsService,
     private location: Location
   ) {}
 
@@ -24,7 +24,7 @@ export class OrgDetailComponent implements OnInit {
 
   getOrg(): void {
     const id = +this.route.snapshot.paramMap.get('id');
-    this.orgService.getOrg(id)
+    this.orgsService.getOrg(id)
       .subscribe(org => {
           this.org = org;
         });

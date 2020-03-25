@@ -26,6 +26,14 @@ export class DonateComponent implements OnInit {
       });
   }
 
+  sendTx(): void {
+    //TODO//
+    /*
+    - Start metamask tx with correct params
+    */
+    console.log('sendTx');
+  }
+
   goBack(): void {
     this.location.back();
   }

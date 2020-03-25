@@ -1,8 +1,8 @@
-<h3>Org Groups</h3>
+<h3>Select Evaluator</h3>
 <mat-grid-list cols="2" rowHeight="2:1">
-    <a *ngFor="let group of groups" class="col-1-4"
-    routerLink="/group/{{group.id}}">
-        <mat-grid-tile [style.background]="group.color">
+    <a *ngFor="let evaluator of evaluators" class="col-1-4"
+    routerLink="/evaluators/{{evaluator.id}}">
+        <mat-grid-tile [style.background]="evaluator.color">
             <div class="example-ripple-container mat-elevation-z4"
                 matRipple
                 [matRippleCentered]="centered"
@@ -10,7 +10,6 @@
                 [matRippleUnbounded]="unbounded"
                 [matRippleRadius]="radius"
                 [matRippleColor]="color">
-                {{group.name}}
             </div>
         </mat-grid-tile>
     </a>
