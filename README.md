@@ -2,41 +2,25 @@
   <img src="https://github.com/fuguefoundation/dapp-nonprofit/blob/master/src/assets/images/logo_150.png">
 </p>
 
-## Start
+## Quick Start
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
+1. Clone the repo
+2. `npm install`
+3. Install [Truffle](https://www.trufflesuite.com/docs/truffle/getting-started/installation) and run `truffle compile` to generate contract abstracts inside `/build/contracts` folder
+    - Currently the smart contract capabilities of the dapp are being developed in a [different repo](https://github.com/fuguefoundation/ff-contracts). These contracts are here as filler for when the repos are integrated.
+4. `ng serve` and navigate to `http://localhost:4200/`
 
 ## Testing
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
-Run `ng e2e` to execute the end-to-end tests via [Protractor](http://www.protractortest.org/).
+Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).  Run `ng e2e` to execute the end-to-end tests via [Protractor](http://www.protractortest.org/).
 
-# TODO
+## Details
 
-Phase 1
-Expand Search/Filter Capabilities
-HTTP request pulls in an object to be parsed, which is then rendered as a searchable/filterable table. Help improve the functionality and UX.
+The app is currently using mock data pulled in using Angular's `InMemoryDataService`. This will ultimately be replaced by a RESTful API, a capability being developed in [this repo](https://github.com/fuguefoundation/ff-api). 
 
-Required
-
-
-1. Improve UX/UI throughout (Angular Material)
-    - Menu
-    - Dashboard, Org, About pages
-2. Expand search capabilities
-    - Allow filtering to search by name and nonprofit focus
-3. Integrate Metamask, Web3 into dashboard-detail
-4. Improve Message service
-5. Determine four group types
-6. Dashboard-detail page lists all members of the group
-7. Org page - more info
-8. About page - more info
-9. Results page - more info, data aggregation
-10. Unit and E2E testing
-
-Phase 2
-1. Incorporate truffle and smart contracts
-2. Incorporate API
+<p align="center">
+  <img src="https://github.com/fuguefoundation/ff-dapp/blob/master/src/assets/images/ff-dapp-flow.jpg">
+</p>
 
 ## Contributing to the project
 
@@ -47,10 +31,3 @@ This is an open source project. Contributions are welcomed & encouraged! :smile:
 * [Angular CLI](https://github.com/angular/angular-cli)
 * [Truffle](http://truffleframework.com/docs/)
 * [Open Zeppelin](https://docs.openzeppelin.com/openzeppelin/)
-
-Name
-Description
-Pricing/hour
-Experience Level
-Bounty Type
-Keywords
