@@ -7,54 +7,50 @@ import { DonateComponent }   from './donate/donate.component';
 import { OrgsComponent }      from './orgs/orgs.component';
 import { OrgDetailComponent }  from './org-detail/org-detail.component';
 import { AboutComponent }      from './about/about.component';
+import { PageNotFoundComponent }      from './page-not-found/page-not-found.component';
 
 const routes: Routes = [
-  { path: '', redirectTo: '/evaluators', pathMatch: 'full' },
-  { path: 'evaluators', component: EvaluatorsComponent },
-  { path: 'evaluators/:id', component: EvaluatorDetailComponent },
-  { path: 'donate/:id', component: DonateComponent },
-  { path: 'orgs/:id', component: OrgDetailComponent },
-  { path: 'orgs', component: OrgsComponent },
-  { path: 'about', component: AboutComponent }
+	{
+		path: '',
+		redirectTo: '/evaluators',
+		pathMatch: 'full'
+	},
+	{
+		path: 'evaluators',
+		component: EvaluatorsComponent,
+		data: {title: "Home | Fugue Foundation"}
+	},
+	{
+		path: 'evaluators/:id',
+		component: EvaluatorDetailComponent,
+		data: {title: "Evaluator | Fugue Foundation"}
+	},
+	{
+		path: 'donate/:id',
+		component: DonateComponent,
+		data: {title: "Donations | Fugue Foundation"}
+	},
+	{
+		path: 'orgs',
+		component: OrgsComponent,
+		data: {title: "Nonprofits | Fugue Foundation"}
+	},
+    {
+		path: 'orgs/:id',
+		component: OrgDetailComponent,
+		data: {title: "Nonprofit | Fugue Foundation"}
+	},
+	{
+		path: 'about',
+		component: AboutComponent,
+		data: {title: "About | Fugue Foundation"}
+	},
+	{
+		path: '**',
+		component: PageNotFoundComponent,
+		data: {title: "404 | Fugue Foundation"}
+	}
 ];
-
-// const routes: Routes = [
-// 	{
-// 		path: '',
-// 		redirectTo: '/dapp',
-// 		pathMatch: 'full'
-// 	},
-// 	{
-// 		path: 'home',
-// 		component: HomeComponent,
-// 		data: {title: "Home | Fugue Foundation"}
-// 	},
-// 	{
-// 		path: 'dapp',
-// 		component: DappComponent,
-// 		data: {title: "dApp | Fugue Foundation"}
-// 	},
-// 	{
-// 		path: 'beneficiaries',
-// 		component: BeneficiariesComponent,
-// 		data: {title: "Beneficiaries | Fugue Foundation"}
-// 	},
-// 	{
-// 		path: 'beneficiary/:id',
-// 		component: BeneficiaryDetailComponent,
-// 		data: {title: "Beneficiary | Fugue Foundation"}
-// 	},
-// 	{
-// 		path: 'events',
-// 		component: EventsComponent,
-// 		data: {title: "Events | Fugue Foundation"}
-// 	},
-// 	{
-// 		path: '**',
-// 		component: PageNotFoundComponent,
-// 		data: {title: "404 | Fugue Foundation"}
-// 	}
-// ];
 
 @NgModule({
   imports: [ RouterModule.forRoot(routes) ],

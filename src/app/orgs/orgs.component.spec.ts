@@ -1,5 +1,6 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
-
+import { HttpClientModule } from '@angular/common/http';
+import { OrgsService } from '../services/orgs.service';
 import { OrgsComponent } from './orgs.component';
 
 describe('OrgsComponent', () => {
@@ -8,7 +9,9 @@ describe('OrgsComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ OrgsComponent ]
+      declarations: [ OrgsComponent ],
+      imports : [HttpClientModule],
+      providers: [OrgsService]
     })
     .compileComponents();
   }));

@@ -1,5 +1,6 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
-
+import { HttpClientModule } from '@angular/common/http';
+import { OrgsService } from '../services/orgs.service';
 import { OrgSearchComponent } from './org-search.component';
 
 describe('OrgSearchComponent', () => {
@@ -8,7 +9,9 @@ describe('OrgSearchComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ OrgSearchComponent ]
+      declarations: [ OrgSearchComponent ],
+      imports : [HttpClientModule],
+      providers: [OrgsService]
     })
     .compileComponents();
   }));

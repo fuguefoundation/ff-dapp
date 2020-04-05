@@ -24,6 +24,7 @@ import { AboutComponent } from './about/about.component';
 import { DataComponent } from './data/data.component';
 import { NavComponent } from './nav/nav.component';
 import { DonateComponent } from './donate/donate.component';
+import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
 
 @NgModule({
   imports: [
@@ -52,7 +53,8 @@ import { DonateComponent } from './donate/donate.component';
     EvaluatorDetailComponent,
     DataComponent,
     NavComponent,
-    DonateComponent
+    DonateComponent,
+    PageNotFoundComponent
   ],
   providers: [],
   bootstrap: [AppComponent]
