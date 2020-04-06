@@ -25,6 +25,8 @@
     "@openzeppelin/contracts": "^2.5.0",
     "@truffle/contract": "^4.0.33",
     "angular-in-memory-web-api": "^0.10.0",
+    "bnc-notify": "^1.1.1",
+    "bnc-onboard": "^1.5.0",
     "ethers": "^4.0.37",
     "rxjs": "~6.5.4",
     "tslib": "^1.10.0",
