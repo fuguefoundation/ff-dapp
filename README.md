@@ -9,6 +9,14 @@
 3. Install [Truffle](https://www.trufflesuite.com/docs/truffle/getting-started/installation) and run `truffle compile` to generate contract abstracts inside `/build/contracts` folder
     - Currently the smart contract capabilities of the dapp are being developed in a [different repo](https://github.com/fuguefoundation/ff-contracts). These contracts are here as filler for when the repos are integrated.
 4. `ng serve` and navigate to `http://localhost:4200/`
+    - You'll need to create and add environment variables in `src/environments/environment.ts` and `src/environments/environment.prod.ts`
+
+```
+export const environment = {
+  production: false, //or true if prod.ts
+  BLOCK_NATIVE_KEY: "api-key-here"
+};
+```
 
 ## Testing
 
