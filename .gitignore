@@ -42,6 +42,8 @@ yarn-error.log
 testem.log
 /typings
 package-lock.json
+/src/environments/environment.prod.ts
+/src/environments/environment.ts
 
 # System Files
 .DS_Store
