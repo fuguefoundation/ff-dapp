@@ -20,10 +20,10 @@ export class DonateComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-      this.web3Service.artifactsToContract(nft_artifacts)
-      .then((abstract) => {
-        this.NFT = abstract;
-      });
+    this.web3Service.artifactsToContract(nft_artifacts)
+        .then((abstract) => {
+            this.NFT = abstract;
+        });  
   }
 
   sendTx(): void {
