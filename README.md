@@ -2,6 +2,8 @@
   <img src="https://github.com/fuguefoundation/dapp-nonprofit/blob/master/src/assets/images/logo_150.png">
 </p>
 
+## Fugue Foundation is a Non-Profit Platform managing Open Source Projects and combining together an Ethereum-Based donation platform leveraging the principles of effective altruisim
+
 ## Quick Start
 
 1. Clone the repo
