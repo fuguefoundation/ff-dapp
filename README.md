@@ -1,8 +1,14 @@
 <p align="center">
-  <img src="https://github.com/fuguefoundation/dapp-nonprofit/blob/master/src/assets/images/logo_150.png">
+  <img src="https://github.com/fuguefoundation/ff-dapp/blob/master/src/assets/images/logo_150.png">
 </p>
 
+## About the Project
+
+[Fugue Foundation](https://fuguefoundation.org) is a nonprofit dedicated to using open source, decentralized technology to achieve charitable goals.
+
 ## Quick Start
+
+Have a look at a working [prototype](https://fuguefoundation.org/dev/prototype_v0).
 
 1. Clone the repo
 2. `npm install`
@@ -39,3 +45,4 @@ This is an open source project. Contributions are welcomed & encouraged! :smile:
 * [Angular CLI](https://github.com/angular/angular-cli)
 * [Truffle](http://truffleframework.com/docs/)
 * [Open Zeppelin](https://docs.openzeppelin.com/openzeppelin/)
+* [Block Native](https://docs.blocknative.com/)

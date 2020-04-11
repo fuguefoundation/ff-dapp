@@ -26,7 +26,7 @@ export class EvaluatorsService {
     return this.http.get<Evaluator[]>(this.evaluatorsUrl)
       .pipe(
         tap(_ => this.log('fetched evaluators')),
-        catchError(this.handleError<Evaluator[]>('getOrgs', []))
+        catchError(this.handleError<Evaluator[]>('getEvaluators', []))
       );
   }
 
