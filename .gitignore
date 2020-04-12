@@ -48,3 +48,10 @@ package-lock.json
 # System Files
 .DS_Store
 Thumbs.db
+
+# Images
+/src/assets/images/group-cliff.png
+/src/assets/images/self-reliance.jpg
+/src/assets/images/synapses.jpg
+/src/assets/images/woman-veil.png
+
