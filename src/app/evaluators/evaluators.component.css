@@ -77,3 +77,7 @@ h4 {
   -webkit-user-drag: none;
   -webkit-tap-highlight-color: transparent;
 }
+mat-grid-tile{
+    background-repeat:no-repeat;
+    background-position:center;    
+}
