@@ -10,18 +10,36 @@ export class InMemoryDataService implements InMemoryDbService {
     const orgs = [
       { id: 11, name: 'Give Directly', evaluatorId: 1, desc: 'Description' },
       { id: 12, name: 'Malaria Consortium', evaluatorId: 1, desc: 'Description' },
-      { id: 13, name: 'Against Malaria Foundation', evaluatorId: 2, desc: 'Description' },
-      { id: 14, name: 'Helen Keller International', evaluatorId: 2, desc: 'Description' },
-      { id: 15, name: 'Deworm the World Initiative', evaluatorId: 3, desc: 'Description' },
-      { id: 16, name: 'SCI Foundation', evaluatorId: 3, desc: 'Description' },
-      { id: 17, name: 'Sightsavers', evaluatorId: 4, desc: 'Description' },
-      { id: 18, name: 'END Fund', evaluatorId: 4, desc: 'Description' }
+      { id: 13, name: 'Against Malaria Foundation', evaluatorId: 1, desc: 'Description' },
+      { id: 14, name: 'Helen Keller International', evaluatorId: 1, desc: 'Description' },
+      { id: 15, name: 'Deworm the World Initiative', evaluatorId: 1, desc: 'Description' },
+      { id: 16, name: 'SCI Foundation', evaluatorId: 1, desc: 'Description' },
+      { id: 17, name: 'Sightsavers', evaluatorId: 1, desc: 'Description' },
+      { id: 18, name: 'END Fund', evaluatorId: 1, desc: 'Description' },
+      { id: 19, name: 'Acadia Center', evaluatorId: 2, desc: 'Advancing the Clean Energy Future' },
+      { id: 20, name: 'Conservation Foundation of the Gulf Coast', evaluatorId: 2, desc: 'Conservation through education and collaboration' },
+      { id: 21, name: 'Grand Teton National Park Foundation', evaluatorId: 2, desc: 'Providing financial support to enhance, preserve and protect Grand Teton National Park' },
+      { id: 22, name: 'North Carolina Coastal Federation', evaluatorId: 2, desc: 'Working together for a healthy coast' },
+      { id: 23, name: 'Rainforest Trust', evaluatorId: 2, desc: 'Saving Species + Caring for Communities + Protecting Our Planet' },
+      { id: 24, name: 'Rose Foundation for Communities and the Environment', evaluatorId: 2, desc: 'Supporting grassroots initiatives that inspire community action to protect the environment, consumers and public health.' },
+      { id: 25, name: 'Southern Environmental Law Center', evaluatorId: 2, desc: 'Using the power of law to protect the environment and health of the Southeast' },
+      { id: 26, name: 'Texas Parks and Wildlife Foundation', evaluatorId: 2, desc: 'Keeping Texas wild' },
+      { id: 27, name: 'Fistula Foundation', evaluatorId: 3, desc: 'Description' },
+      { id: 28, name: 'Living Good', evaluatorId: 3, desc: 'Description' },
+      { id: 29, name: 'Oxfam', evaluatorId: 3, desc: 'Description' },
+      { id: 30, name: 'Population Services International', evaluatorId: 3, desc: 'Description' },
+      { id: 31, name: 'Village Enterprise', evaluatorId: 3, desc: 'Description' },
+      { id: 32, name: 'Johns Hopkins Center for Health Security', evaluatorId: 4, desc: 'Description' },
+      { id: 33, name: 'Biosecurity initiative at Centre for International Security and Cooperation', evaluatorId: 4, desc: 'Description' },
+      { id: 34, name: 'Univursa Health', evaluatorId: 4, desc: 'Description' },
+      { id: 35, name: 'Development Media International', evaluatorId: 4, desc: 'Description' },
+      { id: 36, name: 'Centre for Study of Existential Risk', evaluatorId: 4, desc: 'Description' },
     ];
     const evaluators = [
-        { id: 1, name: 'Evaluator 1', desc: 'Description Evaluator 1', color: '#ffffff'},
-        { id: 2, name: 'Evaluator 2', desc: 'Description Evaluator 2', color: 'gray'},
-        { id: 3, name: 'Evaluator 3', desc: 'Description Evaluator 3', color: '#000000'},
-        { id: 4, name: 'Evaluator 4', desc: 'Description Evaluator 4', color: '#b31121'}
+        { id: 1, name: 'Give Well', desc: 'Description Give Well', color: '#ffffff', image: './assets/images/self-reliance.jpg'},
+        { id: 2, name: 'Charity Navigator', desc: 'Description Evaluator 2', color: 'gray', image: './assets/images/group-cliff.png'},
+        { id: 3, name: 'The Life You Can Save', desc: 'Description Evaluator 3', color: '#000000', image: './assets/images/woman-veil.png'},
+        { id: 4, name: 'COVID-19 | Effective Altruism', desc: 'Description Evaluator 4', color: '#b31121', image: './assets/images/synapses.jpg'}
 
     ];
     return {orgs, evaluators};
