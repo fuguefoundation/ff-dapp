@@ -4,9 +4,9 @@
 
 ## About the Project
 
-[Fugue Foundation](https://fuguefoundation.org) is a nonprofit dedicated to using open source, decentralized technology to achieve charitable goals.
+[Fugue Foundation](https://fuguefoundation.org) is a nonprofit dedicated to using open source, decentralized technology to achieve charitable goals rooted in the principles of effective altruism. Read this [blog post](https://blog.fuguefoundation.org/ff-platform-overiew/) to learn more about the use case and architecture of our flagship project, the Fugue Foundation decentralized application.
 
-## Quick Start
+## Setup
 
 Have a look at a working [prototype](https://fuguefoundation.org/dev/prototype_v0).
 
