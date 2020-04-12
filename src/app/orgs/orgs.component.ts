@@ -13,7 +13,7 @@ export class OrgsComponent implements OnInit {
 
     orgs: Org[];
     selectedOrg: Org;
-    displayedColumns: string[] = ['id', 'name', 'groupId', 'desc'];
+    displayedColumns: string[] = ['id', 'name', 'evaluatorId', 'desc'];
     dataSource: MatTableDataSource<Org>;
     @ViewChild(MatSort, {static: true}) sort: MatSort;
 

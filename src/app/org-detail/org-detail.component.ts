@@ -1,5 +1,5 @@
 import { Component, OnInit, Input } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { Router, ActivatedRoute } from '@angular/router';
 import { Location } from '@angular/common';
 import { Org } from '../models/org';
 import { OrgsService } from '../services/orgs.service';
@@ -14,6 +14,7 @@ export class OrgDetailComponent implements OnInit {
 
   constructor(
     private route: ActivatedRoute,
+    private router: Router,
     private orgsService: OrgsService,
     private location: Location
   ) {}
@@ -28,6 +29,11 @@ export class OrgDetailComponent implements OnInit {
       .subscribe(org => {
           this.org = org;
         });
+  }
+
+  web3Donate(id): void {
+      console.log('metamask');
+      this.router.navigateByUrl('donate/' + id)
   }
 
   goBack(): void {
