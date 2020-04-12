@@ -10,19 +10,17 @@
 
 Have a look at a working [prototype](https://fuguefoundation.org/dev/prototype_v0).
 
-1. Clone the repo
-2. `npm install`
-3. Install [Truffle](https://www.trufflesuite.com/docs/truffle/getting-started/installation) and run `truffle compile` to generate contract abstracts inside `/build/contracts` folder
+1. Clone the repo and `npm install`
+2. Install [Truffle](https://www.trufflesuite.com/docs/truffle/getting-started/installation) and run `truffle compile` to generate contract abstracts inside `/build/contracts` folder
     - Currently the smart contract capabilities of the dapp are being developed in a [different repo](https://github.com/fuguefoundation/ff-contracts). These contracts are here as filler for when the repos are integrated.
-4. `ng serve` and navigate to `http://localhost:4200/`
-    - You'll need to create and add environment variables in `src/environments/environment.ts` and `src/environments/environment.prod.ts`
-
+3. To get the Block Native and Web3 integration working, you'll need to create and add environment variables in `src/environments/environment.ts` and `src/environments/environment.prod.ts`
 ```
 export const environment = {
-  production: false, //or true if prod.ts
+  production: false, //true in environment.prod.ts
   BLOCK_NATIVE_KEY: "api-key-here"
 };
 ```
+4. `ng serve` and navigate to `http://localhost:4200/`
 
 ## Testing
 
