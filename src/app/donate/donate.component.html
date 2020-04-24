@@ -1,7 +1,10 @@
 <button mat-raised-button (click)="goBack()"><mat-icon>navigate_before</mat-icon>Back</button>
 <h3>Make donation</h3>
-    <ul>
-        <li>Improve Web3 integration and NgOnInit</li>
-        <li>Show transaction values before send</li>
+    <ul *ngIf="walletState">
+        <li>Address: {{walletState.address}}</li>
+        <li>Network: {{networkName}}</li>
+        <li>Balance: {{walletState.balance}}</li>
+        <li>Wallet: {{walletState.wallet.name}}</li>
+        <li>Mobile: {{walletState.mobileDevice}}</li>
     </ul>
 <button mat-raised-button (click)="sendTx()">send tx</button>
