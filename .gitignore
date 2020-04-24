@@ -42,8 +42,8 @@ yarn-error.log
 testem.log
 /typings
 package-lock.json
-/src/environments/environment.prod.ts
-/src/environments/environment.ts
+#/src/environments/environment.prod.ts
+#/src/environments/environment.ts
 
 # System Files
 .DS_Store
@@ -54,4 +54,5 @@ Thumbs.db
 /src/assets/images/self-reliance.jpg
 /src/assets/images/synapses.jpg
 /src/assets/images/woman-veil.png
+/src/assets/images/internet-freedom.jpg
 
