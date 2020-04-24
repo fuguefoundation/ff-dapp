@@ -35,7 +35,7 @@ export class DonateComponent implements OnInit {
   }
 
   sendTx(): void {
-    let temp = {from: this.walletState.address, to: '0x88c98f3eCD2BDc06EE10B191165Cb9924B3F7C4b', value: "1000000"}
+    let temp = {from: this.walletState.address, to: '0x35df44e9ac44943c03a14dd276dc03981ad7c869', value: "1000000"}
     this.web3Service.sendTx(temp);
   }
 
