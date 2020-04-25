@@ -7,4 +7,5 @@
         <li>Wallet: {{walletState.wallet.name}}</li>
         <li>Mobile: {{walletState.mobileDevice}}</li>
     </ul>
-<button mat-raised-button (click)="sendTx()">send tx</button>
+    <p *ngIf="tx">{{tx.hash}}</p>
+<button mat-raised-button class="tx-button" [disabled]="!walletState" (click)="sendTx()">Send Tx</button>

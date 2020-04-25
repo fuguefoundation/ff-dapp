@@ -1,7 +1,8 @@
-import {Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import { Location } from '@angular/common';
 import { Web3Service } from '../services/web3.service';
 import { WalletState } from '../models/walletState';
+import { Transaction } from '../models/tx';
 
 declare let require: any;
 const nft_artifacts = require('../../../build/contracts/XFFToken.json');
@@ -14,8 +15,9 @@ const nft_artifacts = require('../../../build/contracts/XFFToken.json');
 
 export class DonateComponent implements OnInit {
   NFT: any;
-  private walletState: WalletState;
-  private networkName: String;
+  public walletState: WalletState;
+  public tx: Transaction;
+  public networkName: String;
 
   constructor(
     private location: Location,
@@ -32,10 +34,14 @@ export class DonateComponent implements OnInit {
         this.networkName = this.getNetworkName(this.walletState.network);
         console.log(state);
     });
+    this.web3Service.tx$.subscribe(tx => {
+        this.tx = tx;
+        console.log(tx);
+    })
   }
 
   sendTx(): void {
-    let temp = {from: this.walletState.address, to: '0x35df44e9ac44943c03a14dd276dc03981ad7c869', value: "1000000"}
+    let temp = {from: this.walletState.address, to: '0x88c98f3eCD2BDc06EE10B191165Cb9924B3F7C4b', value: "1000000"}
     this.web3Service.sendTx(temp);
   }
 
@@ -46,9 +52,13 @@ export class DonateComponent implements OnInit {
   getNetworkName(id) {
       switch (id) {
           case 1:
-              return 'MainNet';            
+              return 'MainNet';  
+          case 4:
+              return 'Rinkeby';            
           case 5:
-              return 'Goerli';            
+              return 'Goerli';         
+          case 'localhost':
+              return 'localhost'; 
           default:
               return 'Unknown';
       }
