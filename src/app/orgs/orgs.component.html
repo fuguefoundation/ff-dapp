@@ -1,10 +1,18 @@
 <h2>Organizations</h2>
-<app-org-search></app-org-search>
 
-<mat-form-field>
-  <mat-label>Filter</mat-label>
-  <input matInput (keyup)="applyFilter($event)" placeholder="Search/filter orgs">
-</mat-form-field>
+<mat-grid-list cols="2" rowHeight="125px">
+    <mat-grid-tile>
+        <mat-form-field>
+            <mat-label>Filter</mat-label>
+            <input matInput (keyup)="applyFilter($event)" placeholder="Search/filter orgs">
+            <mat-icon matSuffix>filter_list</mat-icon>
+        </mat-form-field>          
+    </mat-grid-tile>
+    <mat-grid-tile>
+        <app-org-search></app-org-search>
+    </mat-grid-tile>        
+</mat-grid-list>
+
 
 <table mat-table [dataSource]="dataSource" matSort class="mat-elevation-z8">
 

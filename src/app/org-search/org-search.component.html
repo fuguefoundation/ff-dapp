@@ -1,9 +1,9 @@
 <div id="search-component">
-  <h4><label for="search-box">Org Search</label></h4>
 
   <mat-form-field>
     <mat-label>Search</mat-label>
     <input matInput #searchBox id="search-box" placeholder="Name of Org" (input)="search(searchBox.value)" />
+    <mat-icon matSuffix>mode_edit</mat-icon>
   </mat-form-field>
 
   <!-- <input #searchBox id="search-box" placeholder="search" (input)="search(searchBox.value)" /> -->
