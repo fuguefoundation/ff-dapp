@@ -8,13 +8,15 @@ import Notify from 'bnc-notify';
 import Onboard from 'bnc-onboard'
 import { environment } from 'src/environments/environment';
 import { WalletState } from '../models/walletState';
+import { Transaction } from '../models/tx';
 
-declare let window: any;
+//declare let window: any;
 
 @Injectable()
 export class Web3Service {
   private web3: any;
   public currentWalletState$ = new Subject<WalletState>();
+  public tx$ = new Subject<Transaction>();
 
   //Block Native ONBOARD options
   initializationOptions = {
@@ -23,8 +25,18 @@ export class Web3Service {
     subscriptions: {
         wallet: wallet => {
             this.web3 = new Web3(wallet.provider)
-        }
-    }
+        },
+        balance: () => {}
+    },
+    walletSelect: {
+        wallets: [
+            { walletName: 'metamask' },
+            { walletName: 'opera' }
+        ]
+    },
+    walletCheck: [
+        {checkName: 'balance', minimumBalance: '100000'}
+    ]
   }
 
   constructor(private debugService: DebugService) {
@@ -64,12 +76,16 @@ export class Web3Service {
   }
 
   public sendTx(options) {
+      let self = this;
       this.web3.eth.sendTransaction(options).on('transactionHash', function(hash){  
         let notifyInstance = Notify({
             dappId: environment.BLOCK_NATIVE_KEY,
-            networkId: 5  
+            networkId: 5
         });
-        notifyInstance.hash(hash);
+        const { emitter } = notifyInstance.hash(hash);
+        emitter.on('txConfirmed', function(tx) {
+            self.tx$.next(tx);
+        });
       })
   }
 
