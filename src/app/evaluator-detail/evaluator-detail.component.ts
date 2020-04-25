@@ -59,7 +59,6 @@ export class EvaluatorDetailComponent implements OnInit {
   }
 
   web3Donate(id): void {
-    console.log('metamask');
     this.router.navigateByUrl('donate/' + id)
   }
 

@@ -2,7 +2,9 @@
   <button mat-raised-button (click)="goBack()"><mat-icon>navigate_before</mat-icon>Back</button>
   <h2>{{evaluator.name | uppercase}}</h2>
   <h4>{{evaluator.desc}}</h4>
-  
+
+  <button mat-raised-button class="donate-button" (click)="web3Donate(evaluator.id)">Donate</button>
+
   <table mat-table [dataSource]="dataSource" matSort class="mat-elevation-z8">
 
     <!-- Position Column -->
@@ -34,6 +36,5 @@
     <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
     <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
   </table>
-  <button mat-raised-button (click)="web3Donate(evaluator.id)">Donate</button>
 
 </div>
