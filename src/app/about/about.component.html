@@ -1,16 +1,33 @@
-<p>
-    The Fugue Foundation manages a few open source projects, which combine together to create an Ethereum-based donation platform guided by the principles of effective altruism.
-</p>
-
-<div>
-    <img src="./assets/images/ff-dapp-flow.jpg" alt="FF dApp Workflow" title="FF dApp Workflow" class="responsive">
+<div class="ff-body">
+    <p>
+    The Fugue Foundation is actively developing a few open source projects, which combine together to create an Ethereum-based donation platform guided by the principles of effective altruism.
+    </p>
+    <div>
+        <img src="./assets/images/ff-dapp-flow.jpg" alt="FF dApp Workflow" title="FF dApp Workflow" class="responsive">
+    </div>
+    <p>This diagram depicts the basic flow. When a user visits the decentralized application (dApp), the page queries a dataset of nonprofit organizations through the application programming interface (API) and populates four selections. These represent four models for evaluating the criteria of nonprofit organizations in an effort to gauge maximum impact. The four charity evaluators currently available are Give Well, 80,000 Hours, The Life You Can Save, and Animal Charity Evaluators. Each apply the principles of <a href="https://www.effectivealtruism.org/">effective altruism</a> in their selection process, and Fugue Foundation will continue to explore how these evaluation criteria map to charitable impact as we build out the platform. The user then selects one of these options, which shows the nonprofits belonging to a given evaluator. Think of it as a type of charitable index fund. A page shows some of the metrics and estimated impact for the nonprofits and the user can then and send <code>ether</code> (or any ERC20 token) to the dApp. Through the logic encoded in the smart contracts deployed to the Ethereum blockchain, the donation is split among the chosen nonprofits and the user is rewarded with a non-fungible token (NFT).</p>
+    <h2>dApp</h2>
+    <ul>
+        <li>Angular 9</li>
+        <li>Truffle / Solidity</li>
+        <li>Open Zeppelin</li>
+    </ul>
+    <p>The angular frontend and the smart contract backend are being developed separately for now. However, the angular dapp does have services providing a functional Truffle/Web3 integration, which will make eventually combining the two together relatively simple.</p>
+    <p>For the frontend, the focus is on improving functionality, improving UX/UI (Angular Material), and writing tests (Karma, Jasmine, Protractor). The prototype is based off of the Angular <a href="https://angular.io/tutorial">Tour of Heroes tutorial</a>.</p>
+    <p>For the smart contract backend, <a href="https://www.trufflesuite.com/docs/truffle/overview">Truffle</a> is used to compile and deploy smart contracts based off excellent resources from <a href="https://docs.openzeppelin.com/contracts/2.x/">Open Zeppelin</a> and the <a href="https://gitcoin.co/kudos">Kudos</a> from Gitcoin. Specifically, there is an <code>ERC721</code> contract and a <code>PaymentSplitter</code> contract that work together, meaning that once a user makes a donation of a certain value, s/he will receive a unique edition of the Fugue Foundation NFT. <a href="https://www.blocknative.com/">Block Native</a> is also integrated to help make the <code>web3</code> experience as user friendly as possible. The focus currently is to build out a few of the methods to each contract to capture this functionality, and to write tests (in both Solidity and Javascript) to capture the intended behavior.</p>
+    <ul>
+    <li><em>Angular Frontend</em>: <a href="https://github.com/fuguefoundation/ff-dapp">https://github.com/fuguefoundation/ff-dapp</a></li><li><em>Truffle Backend</em>: <a href="https://github.com/fuguefoundation/ff-contracts">https://github.com/fuguefoundation/ff-contracts</a></li>
+    </ul>
+    <h2 id="api">API</h2>
+    <ul>
+        <li>MongoDB</li>
+        <li>Node.js</li>
+        <li>Javascript</li>
+    </ul>
+    <p>The RESTful API is meant to not only serve as the data source for the dapp, but also to grow as a resource for the entire effective altruism community. Over the coming months, we hope to get insight from charity evaluation experts on the best metrics and data structures to use in order to model the API into something that academics, altruists, journalist, data scientists, and others will want to use in their own projects.</p>
+    <p>The API currently runs on Heroku in a dev environment. There are two primary objects - <code>nonprofits</code> and <code>evaluators</code> - each exposed through <code>GET</code>, <code>POST</code>, <code>PATCH</code>, and <code>DELETE</code> requests. In the short term, the goal is to build out the API in a secure and efficient fashion. However, long term the key is to create datasets that make other organizations want to use this resource to further their own research goals.</p>
+    <ul>
+        <li><em>API repo</em>: <a href="https://github.com/fuguefoundation/ff-api">https://github.com/fuguefoundation/ff-api</a></li>
+        <li><em>Docs</em>: <a href="https://fuguefoundation.org/docs/api-docs.html">https://fuguefoundation.org/docs/api-docs.html</a></li>
+    </ul>
 </div>
-
-<p>
-    When a user visits the decentralized application (dApp), the page queries a dataset of nonprofit organizations through an application programming interface (API) and populates four selections. These are three groupings (plus one create-your-own option) of nonprofits based on the criteria of certain charity evaluator organizations such as Give Well, Charity Navigator, and Effective Altruism. The user then selects one of these options and sends ether or any ERC20 token to the dApp. Through the logic encoded in the Fugue Foundation smart contracts deployed the Ethereum blockchain, the donation is split among the chosen nonprofits and the user is rewarded with a non-fungible token (NFT).
-</p>
-
-<h3>Further Afield</h3>
-<ul>
-    <li>Start the conversation</li>
-</ul>
