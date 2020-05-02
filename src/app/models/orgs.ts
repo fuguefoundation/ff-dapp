@@ -1,5 +1,6 @@
-export interface Org {
-    nonprofit: {
+export interface Orgs {
+    count: number;
+    nonprofits: [{
         _id: string;
         name: string;
         url: string;    
@@ -11,21 +12,14 @@ export interface Org {
         evaluatorId: {
             _id: string;
             name: string;
-            url: string;
-            logo: string;
-            image: string;
-            focus: string;
-            short_desc: string;
-            desc: string;
         };
         stats: {
             metric1: number;
             metric2: number;
         };
-    };
-    request: {
-        type: string;
-        description: string;
-        url: string;
-    };
+        request: {
+            type: string;
+            url: string;
+        }
+    }]
   }

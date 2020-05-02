@@ -1,5 +1,6 @@
-export interface Evaluator {
-    evaluator: {
+export interface Evaluators {
+    count: number;
+    evaluators: [{
         _id: string;
         name: string;
         url: string;
@@ -8,10 +9,9 @@ export interface Evaluator {
         focus: string;
         short_desc: string;
         desc: string;
-    };
-    request: {
-        type: string;
-        description: string;
-        url: string;
-    };
+        request: {
+            type: string;
+            url: string;
+        }
+    }]
   }
