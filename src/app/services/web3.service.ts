@@ -15,6 +15,7 @@ import { Transaction } from '../models/tx';
 @Injectable()
 export class Web3Service {
   private web3: any;
+  private onboard: any;
   public currentWalletState$ = new Subject<WalletState>();
   public tx$ = new Subject<Transaction>();
 
@@ -22,6 +23,7 @@ export class Web3Service {
   initializationOptions = {
     dappId: environment.BLOCK_NATIVE_KEY,
     networkId: 5,
+    darkMode: true,
     subscriptions: {
         wallet: wallet => {
             this.web3 = new Web3(wallet.provider)
@@ -29,13 +31,16 @@ export class Web3Service {
         balance: () => {}
     },
     walletSelect: {
+        heading: "Donation Prep",
         wallets: [
             { walletName: 'metamask' },
             { walletName: 'opera' }
         ]
     },
     walletCheck: [
-        {checkName: 'balance', minimumBalance: '100000'}
+        { checkName: 'connect' },
+        { checkName: 'network' },
+        { checkName: 'balance', minimumBalance: '100000' }
     ]
   }
 
@@ -57,25 +62,24 @@ export class Web3Service {
   }
 
   private async blockNativeOnboard(options) {
-    const onboard = Onboard(options);
-    let walletSelected;
-    let readyToTransact;
+    this.onboard = Onboard(options);
+    let walletSelected: boolean, readyToTransact: boolean;
     try {
-        walletSelected = await onboard.walletSelect();
+        walletSelected = await this.onboard.walletSelect();
     } catch (error) {
         console.log(error);
     }
     if (walletSelected) {
-        readyToTransact = await onboard.walletCheck();
+        readyToTransact = await this.onboard.walletCheck();
     }
     if (walletSelected && readyToTransact){
-        this.currentWalletState$.next(onboard.getState());
+        this.currentWalletState$.next(this.onboard.getState());
     } else {
         this.log('No wallet detected');
     }
   }
 
-  public sendTx(options) {
+  public donate(options) {
       let self = this;
       this.web3.eth.sendTransaction(options).on('transactionHash', function(hash){  
         let notifyInstance = Notify({
@@ -85,8 +89,20 @@ export class Web3Service {
         const { emitter } = notifyInstance.hash(hash);
         emitter.on('txConfirmed', function(tx) {
             self.tx$.next(tx);
+            setTimeout(() => {
+                self.currentWalletState$.next(self.onboard.getState())}, 
+                8000
+            );
         });
       })
+  }
+
+  public getHexValue(index: number) {
+      return this.web3.utils.toHex(index+1);
+  }
+
+  public convertETHToWei(amount: number) {
+    return this.web3.utils.toWei(amount, 'ether');
   }
 
   /** Log a OrgService message with the MessageService */

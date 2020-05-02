@@ -2,19 +2,19 @@
 <div *ngIf="org">
     <mat-card class="example-card">
     <mat-card-header>
-        <div mat-card-avatar class="example-header-image"></div>
-        <mat-card-title>{{org.name | uppercase}}</mat-card-title>
-        <mat-card-subtitle>{{org.evaluatorId}}</mat-card-subtitle>
+        <div mat-card-avatar class="example-header-image" [style.background-image]="'url('+ org.nonprofit.logo +')'"></div>
+        <mat-card-title>{{org.nonprofit.name | uppercase}}</mat-card-title>
+        <mat-card-subtitle>Evaluator: {{org.nonprofit.evaluatorId.name}}</mat-card-subtitle>
     </mat-card-header>
-    <img mat-card-image src="https://material.angular.io/assets/img/examples/shiba2.jpg" alt="Photo of a Shiba Inu">
+    <img mat-card-image src="{{org.nonprofit.image}}" alt="{{org.nonprofit.name}}">
     <mat-card-content>
         <p>
-        {{org.desc}}
+        {{org.nonprofit.desc}}
         </p>
     </mat-card-content>
     <mat-card-actions>
-        <button mat-raised-button>Homepage</button>
-        <button mat-raised-button (click)="web3Donate(org.id)">Donate</button>
+        <a mat-raised-button href="{{org.nonprofit.url}}" target="_blank" title="{{org.nonprofit.name}}">Homepage</a>
+        <a mat-raised-button class="ff-red-button" href="{{org.nonprofit.evaluatorId.url}}" target="_blank" title="{{org.nonprofit.evaluatorId.name}}">EA</a>
     </mat-card-actions>
     </mat-card>
 

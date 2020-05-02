@@ -5,8 +5,10 @@ import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
 import { Evaluator } from '../models/evaluator';
 import { EvaluatorsService } from '../services/evaluators.service';
-import { Org } from '../models/org';
+import { Orgs } from '../models/orgs';
 import { OrgsService } from '../services/orgs.service';
+
+declare let window: any;
 
 @Component({
   selector: 'app-evaluator-detail',
@@ -16,10 +18,9 @@ import { OrgsService } from '../services/orgs.service';
 
 export class EvaluatorDetailComponent implements OnInit {
   evaluator: Evaluator;
-  orgs: Org[] = [];
-  NFT: any;
-  displayedColumns: string[] = ['id', 'name', 'evaluatorId', 'desc'];
-  dataSource: MatTableDataSource < Org >;
+  orgs: Orgs = null;
+  displayedColumns: string[] = ['name', 'desc'];
+  dataSource: MatTableDataSource < any >;
   @ViewChild(MatSort, {static: true}) sort: MatSort;
 
   constructor(
@@ -35,24 +36,38 @@ export class EvaluatorDetailComponent implements OnInit {
   }
 
   getEvaluator(): void {
-    const id = +this.route.snapshot.paramMap.get('id');
-    this.evaluatorsService.getEvaluator(id)
-      .subscribe(evaluator => {
-        this.evaluator = evaluator;
-        this.getOrgs();
-      });
+    this.route.paramMap.subscribe(params => {
+        const id = params.get('_id');
+        this.evaluatorsService.getEvaluator(id).subscribe(evaluator => {
+            console.log(evaluator);
+          this.evaluator = evaluator;
+          this.getOrgs();
+        });
+    });
   }
+
+//   getEvaluator(): void {
+//     const id = +this.route.snapshot.paramMap.get('_id');
+//     console.log(id);
+//     this.evaluatorsService.getEvaluator(id)
+//       .subscribe(evaluator => {
+//         this.evaluator = evaluator;
+//         this.getOrgs();
+//       });
+//   }
 
   getOrgs(): void {
     this.orgsService.getOrgs()
       .subscribe(orgs => {
+        this.orgs = orgs;
         this.route.params.subscribe(params => {
-          orgs.forEach((o: Org) => {
-            if (o.evaluatorId == params.id) {
-              this.orgs.push(o);
+          let nonprofits = [];
+          orgs.nonprofits.forEach((o) => {
+            if (o.evaluatorId._id == params._id) {
+              nonprofits.push(o);
             }
           });
-          this.dataSource = new MatTableDataSource(this.orgs);
+          this.dataSource = new MatTableDataSource(nonprofits);
           this.dataSource.sort = this.sort;
         });
       });

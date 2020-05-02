@@ -64,3 +64,7 @@ th.mat-sort-header-sorted {
 table a {
     color: #b31121;
 }
+td.mat-cell {
+    padding: .5%;
+    font-size: 1.1em;
+}

@@ -3,7 +3,7 @@
   <mat-form-field>
     <mat-label>Search</mat-label>
     <input matInput #searchBox id="search-box" placeholder="Name of Org" (input)="search(searchBox.value)" />
-    <mat-icon matSuffix>mode_edit</mat-icon>
+    <mat-icon matSuffix>search</mat-icon>
   </mat-form-field>
 
   <!-- <input #searchBox id="search-box" placeholder="search" (input)="search(searchBox.value)" /> -->
@@ -11,7 +11,7 @@
   <ul class="search-result">
     <li *ngFor="let org of orgs$ | async" >
       <a routerLink="/orgs/{{org.id}}">
-        {{org.name}}
+        {{org.nonprofits.name}}
       </a>
     </li>
   </ul>

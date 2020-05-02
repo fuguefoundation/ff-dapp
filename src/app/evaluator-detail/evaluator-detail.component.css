@@ -14,8 +14,14 @@ input {
 table a {
     color: #b31121;
 }
-.donate-button {
-    background-color: #b31121;
-    color: white;
-    margin-bottom: 1%;
+td.mat-cell {
+    padding: .7%;
+    font-size: 1.1em;
+}
+.example-card {
+  max-width: 400px;
+}
+
+.example-header-image {
+  background-size: cover;
 }

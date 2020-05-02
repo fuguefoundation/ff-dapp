@@ -21,12 +21,12 @@ const routes: Routes = [
 		data: {title: "Home | Fugue Foundation"}
 	},
 	{
-		path: 'evaluators/:id',
+		path: 'evaluators/:_id',
 		component: EvaluatorDetailComponent,
 		data: {title: "Evaluator | Fugue Foundation"}
 	},
 	{
-		path: 'donate/:id',
+		path: 'donate/:_id',
 		component: DonateComponent,
 		data: {title: "Donations | Fugue Foundation"}
 	},
@@ -36,7 +36,7 @@ const routes: Routes = [
 		data: {title: "Nonprofits | Fugue Foundation"}
 	},
     {
-		path: 'orgs/:id',
+		path: 'orgs/:_id',
 		component: OrgDetailComponent,
 		data: {title: "Nonprofit | Fugue Foundation"}
 	},
@@ -53,7 +53,7 @@ const routes: Routes = [
 ];
 
 @NgModule({
-  imports: [ RouterModule.forRoot(routes) ],
+  imports: [ RouterModule.forRoot(routes, {useHash: true}) ],
   exports: [ RouterModule ]
 })
 export class AppRoutingModule {}

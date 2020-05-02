@@ -24,12 +24,22 @@ export class OrgDetailComponent implements OnInit {
   }
 
   getOrg(): void {
-    const id = +this.route.snapshot.paramMap.get('id');
-    this.orgsService.getOrg(id)
-      .subscribe(org => {
+    this.route.paramMap.subscribe(params => {
+        const id = params.get('_id');
+        this.orgsService.getOrg(id).subscribe(org => {
           this.org = org;
+          console.log(this.org);
         });
+    });
   }
+
+//   getOrg(): void {
+//     const id = +this.route.snapshot.paramMap.get('id');
+//     this.orgsService.getOrg(id)
+//       .subscribe(org => {
+//           this.org = org;
+//         });
+//   }
 
   web3Donate(id): void {
       console.log('metamask');

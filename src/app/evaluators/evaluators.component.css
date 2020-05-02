@@ -77,7 +77,14 @@ h4 {
   -webkit-user-drag: none;
   -webkit-tap-highlight-color: transparent;
 }
+.mat-ripple h2 {
+    text-shadow: 1px 0px 2px black;
+    color: white;
+}
 mat-grid-tile{
     background-repeat:no-repeat;
     background-position:center;    
+}
+mat-spinner{
+    margin: 30px auto;
 }

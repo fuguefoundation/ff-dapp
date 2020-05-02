@@ -4,14 +4,16 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable, of } from 'rxjs';
 import { catchError, map, tap } from 'rxjs/operators';
 
+import { environment } from 'src/environments/environment';
 import { Org } from '../models/org';
+import { Orgs } from '../models/orgs';
 import { DebugService } from './debug.service';
-
 
 @Injectable({ providedIn: 'root' })
 export class OrgsService {
 
-  private orgsUrl = 'api/orgs';  // URL to web api
+  //private orgsUrl = 'api/orgs';  // URL to in-memory-data-service api
+  private orgsUrl = environment.FF_API_URL + '/nonprofits';  // URL to web api
 
   httpOptions = {
     headers: new HttpHeaders({ 'Content-Type': 'application/json' })
@@ -22,16 +24,16 @@ export class OrgsService {
     private debugService: DebugService) { }
 
   /** GET orgs from the server */
-  getOrgs (): Observable<Org[]> {
-    return this.http.get<Org[]>(this.orgsUrl)
+  getOrgs (): Observable<Orgs> {
+    return this.http.get<Orgs>(this.orgsUrl)
       .pipe(
         tap(_ => this.log('fetched orgs')),
-        catchError(this.handleError<Org[]>('getOrgs', []))
+        catchError(this.handleError<Orgs>('getOrgs', null))
       );
   }
 
   /** GET org by id. Return `undefined` when id not found */
-  getOrgNo404<Data>(id: number): Observable<Org> {
+  getOrgNo404<Data>(id: string): Observable<Org> {
     const url = `${this.orgsUrl}/?id=${id}`;
     return this.http.get<Org[]>(url)
       .pipe(
@@ -45,7 +47,7 @@ export class OrgsService {
   }
 
   /** GET org by id. Will 404 if id not found */
-  getOrg(id: number): Observable<Org> {
+  getOrg(id: string): Observable<Org> {
     const url = `${this.orgsUrl}/${id}`;
     return this.http.get<Org>(url).pipe(
       tap(_ => this.log(`fetched org id=${id}`)),
@@ -54,20 +56,20 @@ export class OrgsService {
   }
 
   /* GET orgs whose name contains search term */
-  searchOrgs(term: string): Observable<Org[]> {
+  searchOrgs(term: string): Observable<Orgs> {
     if (!term.trim()) {
       // if not search term, return empty org array.
-      return of([]);
+      return of();
     }
-    return this.http.get<Org[]>(`${this.orgsUrl}/?name=${term}`).pipe(
-      tap(x => x.length ?
+    return this.http.get<Orgs>(`${this.orgsUrl}/?name=${term}`).pipe(
+      tap(x => x !== undefined ?
          this.log(`found orgs matching "${term}"`) :
          this.log(`no orgs matching "${term}"`)),
-      catchError(this.handleError<Org[]>('searchOrgs', []))
+      catchError(this.handleError<Orgs>('searchOrgs', null))
     );
   }
 
-  //////// Save methods //////////
+  //////// Other methods //////////
 
   /** POST, DELETE, PUT */
 
@@ -113,6 +115,25 @@ export class OrgsService {
       // Let the app keep running by returning an empty result.
       return of(result as T);
     };
+  }
+
+  shuffle(array) {
+    var currentIndex = array.length, temporaryValue, randomIndex;
+  
+    // While there remain elements to shuffle...
+    while (0 !== currentIndex) {
+  
+      // Pick a remaining element...
+      randomIndex = Math.floor(Math.random() * currentIndex);
+      currentIndex -= 1;
+  
+      // And swap it with the current element.
+      temporaryValue = array[currentIndex];
+      array[currentIndex] = array[randomIndex];
+      array[randomIndex] = temporaryValue;
+    }
+  
+    return array;
   }
 
   /** Log a OrgService message with the debugService */

@@ -1,6 +1,11 @@
-<mat-grid-list cols="2" rowHeight="2:1">
-    <a *ngFor="let evaluator of evaluators" class="col-1-4"
-    routerLink="/evaluators/{{evaluator.id}}">
+<mat-spinner
+    *ngIf="!evaluators"
+    class="example-margin"
+    [color]="spinnerColor">
+</mat-spinner>
+<mat-grid-list [cols]="breakpoint" rowHeight="2:1" (window:resize)="onResize($event)" *ngIf="evaluators">
+    <a *ngFor="let evaluator of evaluators.evaluators" class="col-1-4"
+    routerLink="/evaluators/{{evaluator._id}}">
         <mat-grid-tile [style.background-image]="'url('+ evaluator.image +')'">
         <!-- <mat-grid-tile [style.background]="evaluator.color"> -->
             <div class="example-ripple-container mat-elevation-z4"
@@ -10,10 +15,12 @@
                 [matRippleUnbounded]="unbounded"
                 [matRippleRadius]="radius"
                 [matRippleColor]="color">
-                <h2 style="color:white;">{{evaluator.name}}</h2>
+                <h2>{{evaluator.name}}</h2>
             </div>
+            <mat-grid-tile-header>
+                <h3>{{evaluator.focus}}</h3>
+            </mat-grid-tile-header>
         </mat-grid-tile>
     </a>
 </mat-grid-list>
-
 <!-- <app-data></app-data> -->

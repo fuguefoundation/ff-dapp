@@ -1,6 +1,9 @@
 import { Component, OnInit } from '@angular/core';
-import { Evaluator } from '../models/evaluator';
+import { Evaluators } from '../models/evaluators';
 import { EvaluatorsService } from '../services/evaluators.service';
+import { ThemePalette } from '@angular/material/core';
+
+declare let window: any;
 
 @Component({
   selector: 'app-evaluators',
@@ -8,7 +11,11 @@ import { EvaluatorsService } from '../services/evaluators.service';
   styleUrls: [ './evaluators.component.css' ]
 })
 export class EvaluatorsComponent implements OnInit {
-  evaluators: Evaluator[] = [];
+  evaluators: Evaluators;
+  breakpoint: number;
+
+  //MatSpinner
+  spinnerColor: ThemePalette = 'warn';
 
   //MatRipple
   centered = false;
@@ -21,13 +28,20 @@ export class EvaluatorsComponent implements OnInit {
 
   ngOnInit() {
     this.getEvaluators();
+    this.breakpoint = (window.innerWidth <= 1024) ? 1 : 2;
   }
 
   getEvaluators(): void {
     this.evaluatorsService.getEvaluators()
       .subscribe(evaluators => {
-          console.log(evaluators);
-          this.evaluators = evaluators.slice(0, 5)
+          //this.evaluators = evaluators.slice(0, 5);
+          this.evaluators = evaluators;
+          this.evaluators.evaluators = this.evaluatorsService.shuffle(evaluators.evaluators);
+          console.log(this.evaluators);
       });
+  }
+
+  onResize(event) {
+    this.breakpoint = (event.target.innerWidth <= 700) ? 1 : 2;
   }
 }
