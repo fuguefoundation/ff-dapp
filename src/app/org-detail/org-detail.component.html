@@ -1,22 +1,32 @@
-<button mat-raised-button class="back-button" (click)="goBack()"><mat-icon>navigate_before</mat-icon>Back</button>
-<div *ngIf="org">
+<button mat-raised-button class="back-button" (click)="goBack()">
+  <mat-icon>navigate_before</mat-icon>Back
+</button>
+<div class="row">
+  <div class="col-6" *ngIf="org">
     <mat-card class="example-card">
-    <mat-card-header>
-        <div mat-card-avatar class="example-header-image" [style.background-image]="'url('+ org.nonprofit.logo +')'"></div>
+      <mat-card-header>
+        <div mat-card-avatar class="example-header-image" [style.background-image]="'url('+ org.nonprofit.logo +')'">
+        </div>
         <mat-card-title>{{org.nonprofit.name | uppercase}}</mat-card-title>
         <mat-card-subtitle>Evaluator: {{org.nonprofit.evaluatorId.name}}</mat-card-subtitle>
-    </mat-card-header>
-    <img mat-card-image src="{{org.nonprofit.image}}" alt="{{org.nonprofit.name}}">
-    <mat-card-content>
+      </mat-card-header>
+      <img mat-card-image src="{{org.nonprofit.image}}" alt="{{org.nonprofit.name}}">
+      <mat-card-content>
         <p>
-        {{org.nonprofit.desc}}
+          {{org.nonprofit.short_desc}}
         </p>
-    </mat-card-content>
-    <mat-card-actions>
+      </mat-card-content>
+      <mat-card-actions>
         <a mat-raised-button href="{{org.nonprofit.url}}" target="_blank" title="{{org.nonprofit.name}}">Homepage</a>
-        <a mat-raised-button class="ff-red-button" href="{{org.nonprofit.evaluatorId.url}}" target="_blank" title="{{org.nonprofit.evaluatorId.name}}">EA</a>
-    </mat-card-actions>
+        <a mat-raised-button class="ff-red-button" href="{{org.nonprofit.evaluatorId.url}}" target="_blank"
+          title="{{org.nonprofit.evaluatorId.name}}">EA</a>
+      </mat-card-actions>
     </mat-card>
-
+  </div>
+  <div class="col-6 large-para-text" *ngIf="org">
+    <h2>About {{org.nonprofit.name}}</h2>
+    <p>{{org.nonprofit.desc}}</p>
+    <h2>Donation Impact</h2>
+    <p>{{org.nonprofit.stats.metric1}}</p>
+  </div>
 </div>
-

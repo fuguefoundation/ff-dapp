@@ -7,6 +7,8 @@ import { Evaluator } from '../models/evaluator';
 import { EvaluatorsService } from '../services/evaluators.service';
 import { Orgs } from '../models/orgs';
 import { OrgsService } from '../services/orgs.service';
+import { DonateService } from '../services/donate.service';
+import { ETHPrice } from '../models/eth_price';
 
 declare let window: any;
 
@@ -19,16 +21,22 @@ declare let window: any;
 export class EvaluatorDetailComponent implements OnInit {
   evaluator: Evaluator;
   orgs: Orgs = null;
-  displayedColumns: string[] = ['name', 'desc'];
-  dataSource: MatTableDataSource < any >;
-  @ViewChild(MatSort, {static: true}) sort: MatSort;
+  nonprofits: Array < any > = [];
+  numberOfSelectedOrgs: number;
+  ethPrice: ETHPrice = null;
+  displayedColumns: string[] = ['name', 'desc', 'impact'];
+  dataSource: MatTableDataSource < any > ;
+  @ViewChild(MatSort, {
+    static: true
+  }) sort: MatSort;
 
   constructor(
     private route: ActivatedRoute,
     private router: Router,
     private evaluatorsService: EvaluatorsService,
     private location: Location,
-    private orgsService: OrgsService
+    private orgsService: OrgsService,
+    private donateService: DonateService
   ) {}
 
   ngOnInit(): void {
@@ -37,39 +45,37 @@ export class EvaluatorDetailComponent implements OnInit {
 
   getEvaluator(): void {
     this.route.paramMap.subscribe(params => {
-        const id = params.get('_id');
-        this.evaluatorsService.getEvaluator(id).subscribe(evaluator => {
-            console.log(evaluator);
-          this.evaluator = evaluator;
-          this.getOrgs();
-        });
+      const id = params.get('_id');
+      this.evaluatorsService.getEvaluator(id).subscribe(evaluator => {
+        console.log(evaluator);
+        this.evaluator = evaluator;
+        this.getOrgs();
+      });
     });
   }
-
-//   getEvaluator(): void {
-//     const id = +this.route.snapshot.paramMap.get('_id');
-//     console.log(id);
-//     this.evaluatorsService.getEvaluator(id)
-//       .subscribe(evaluator => {
-//         this.evaluator = evaluator;
-//         this.getOrgs();
-//       });
-//   }
 
   getOrgs(): void {
     this.orgsService.getOrgs()
       .subscribe(orgs => {
         this.orgs = orgs;
         this.route.params.subscribe(params => {
-          let nonprofits = [];
           orgs.nonprofits.forEach((o) => {
             if (o.evaluatorId._id == params._id) {
-              nonprofits.push(o);
+              this.nonprofits.push(o);
             }
           });
-          this.dataSource = new MatTableDataSource(nonprofits);
+          this.numberOfSelectedOrgs = this.nonprofits.length;
+          this.dataSource = new MatTableDataSource(this.nonprofits);
           this.dataSource.sort = this.sort;
+          this.getETHPrice();
         });
+      });
+  }
+
+  getETHPrice(): void {
+    this.donateService.getETHPrice()
+      .subscribe(data => {
+        this.ethPrice = data;
       });
   }
 

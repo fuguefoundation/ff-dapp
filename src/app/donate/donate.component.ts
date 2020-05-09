@@ -88,7 +88,7 @@ export class DonateComponent implements OnInit {
   }
 
   donate(amount): void {
-    let evaluatorData: Array < String > = this.donateService.getEvaluatorData();
+    let evaluatorData: Array <string> = this.donateService.getEvaluatorData();
     let data = this.web3Service.getHexValue(evaluatorData.indexOf(this.paramsId));
     let donation = {
         from: this.walletState.address,

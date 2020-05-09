@@ -1,12 +1,13 @@
 import { Injectable } from '@angular/core';
-import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
 
 import { Observable, of } from 'rxjs';
-import { catchError, map, tap } from 'rxjs/operators';
+import { catchError, tap } from 'rxjs/operators';
 
 import { environment } from 'src/environments/environment';
 import { Orgs } from '../models/orgs';
 import { Evaluator } from '../models/evaluator';
+import { ETHPrice } from '../models/eth_price';
 import { DebugService } from './debug.service';
 
 @Injectable({ providedIn: 'root' })
@@ -15,11 +16,12 @@ export class DonateService {
   //private evaluatorsUrl = 'api/evaluators';  // URL to in-memory-data-service api
   private evaluatorsUrl = environment.FF_API_URL + '/evaluators'; // URL to web api
   private orgsUrl = environment.FF_API_URL + '/nonprofits';
+  private etherscanUrl = "https://api-goerli.etherscan.io/api?module=stats&action=ethprice&apikey=" + environment.ETHERSCAN_API;
 
   httpOptions = {
     headers: new HttpHeaders({
       'Content-Type': 'application/json'
-    })
+    }),
   };
 
   constructor(
@@ -41,6 +43,15 @@ export class DonateService {
       .pipe(
         tap(_ => this.log('fetched orgs')),
         catchError(this.handleError < Orgs > ('getOrgs', null))
+      );
+  }
+
+  /** GET price from Etherscan API */
+  getETHPrice(): Observable<ETHPrice> {
+    return this.http.get<ETHPrice>(this.etherscanUrl)
+      .pipe(
+        tap(_ => this.log('fetched ETH price')),
+        catchError(this.handleError<ETHPrice>('getETHPrice', null))
       );
   }
 
