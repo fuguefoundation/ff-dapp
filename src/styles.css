@@ -14,3 +14,6 @@ mat-card-content p {
 .ff-link {
     color: #b31121;
 }
+.large-para-text p {
+    font-size: 1.3em;
+}

@@ -14,7 +14,7 @@ export interface Orgs {
             name: string;
         };
         stats: {
-            metric1: number;
+            metric1: string;
             metric2: number;
         };
         request: {

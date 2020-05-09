@@ -97,8 +97,10 @@ export class Web3Service {
       })
   }
 
+  /** Add 1 because of zero index and return its hex value for msg.data */
   public getHexValue(index: number) {
-      return this.web3.utils.toHex(index+1);
+      let evalId = index + 1;
+      return this.web3.utils.toHex(evalId);
   }
 
   public convertETHToWei(amount: number) {
