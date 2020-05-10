@@ -13,7 +13,7 @@ Have a look at a working [prototype](https://fuguefoundation.org/dev/prototype_v
 1. Clone the repo and `npm install`
 2. Install [Truffle](https://www.trufflesuite.com/docs/truffle/getting-started/installation) and run `truffle compile` to generate contract abstracts inside `/build/contracts` folder
     - Currently the smart contract capabilities of the dapp are being developed in a [different repo](https://github.com/fuguefoundation/ff-contracts). These contracts are here as filler for when the repos are integrated.
-3. To get the Block Native integration working, you'll need to add your own API key into `src/environments/environment.ts` (dev) or `src/environments/environment.prod.ts` (production)
+3. See `template.ts` inside the `src/environments` folder. Copy that into `src/environments/environment.ts` (dev) and `src/environments/environment.prod.ts` (production) and either acquire your API keys (Block Native, Etherscan) or request the development API link from us.
 4. `ng serve` and navigate to `http://localhost:4200/`
 
 ## Testing
