@@ -5,7 +5,7 @@ import { Observable, of } from 'rxjs';
 import { catchError, map, tap } from 'rxjs/operators';
 
 import { environment } from 'src/environments/environment';
-import { Evaluators } from '../models/evaluators';
+//import { Evaluators } from '../models/evaluators';
 import { Evaluator } from '../models/evaluator';
 import { DebugService } from './debug.service';
 
@@ -24,25 +24,25 @@ export class EvaluatorsService {
     private debugService: DebugService) { }
 
   /** GET evaluators from the server */
-  getEvaluators (): Observable<Evaluators> {
-    return this.http.get<Evaluators>(this.evaluatorsUrl)
+  getEvaluators (): Observable<Evaluator[]> {
+    return this.http.get<Evaluator[]>(this.evaluatorsUrl)
       .pipe(
         tap(_ => this.log('fetched evaluators')),
-        catchError(this.handleError<Evaluators>('getEvaluators', null))
+        catchError(this.handleError<Evaluator[]>('getEvaluators', []))
       );
   }
 
   /** GET evaluator by id. Return `undefined` when id not found */
   getEvaluatorNo404<Data>(id: number): Observable<Evaluator> {
-    const url = `${this.evaluatorsUrl}/?_id=${id}`;
+    const url = `${this.evaluatorsUrl}/?id=${id}`;
     return this.http.get<Evaluator>(url)
       .pipe(
         map(evaluators => evaluators[0]), // returns a {0|1} element array
         tap(h => {
           const outcome = h ? `fetched` : `did not find`;
-          this.log(`${outcome} org _id=${id}`);
+          this.log(`${outcome} org id=${id}`);
         }),
-        catchError(this.handleError<Evaluator>(`getEvaluator _id=${id}`))
+        catchError(this.handleError<Evaluator>(`getEvaluator id=${id}`))
       );
   }
 
@@ -51,7 +51,7 @@ export class EvaluatorsService {
     const url = `${this.evaluatorsUrl}/${id}`;
     return this.http.get<Evaluator>(url).pipe(
       tap(_ => this.log(`fetched evaluator id=${id}`)),
-      catchError(this.handleError<Evaluator>(`getEvaluator _id=${id}`))
+      catchError(this.handleError<Evaluator>(`getEvaluator id=${id}`))
     );
   }
 

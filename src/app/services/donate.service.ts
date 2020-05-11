@@ -1,21 +1,16 @@
 import { Injectable } from '@angular/core';
-import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 
 import { Observable, of } from 'rxjs';
 import { catchError, tap } from 'rxjs/operators';
 
 import { environment } from 'src/environments/environment';
-import { Orgs } from '../models/orgs';
-import { Evaluator } from '../models/evaluator';
 import { ETHPrice } from '../models/eth_price';
 import { DebugService } from './debug.service';
 
 @Injectable({ providedIn: 'root' })
 export class DonateService {
 
-  //private evaluatorsUrl = 'api/evaluators';  // URL to in-memory-data-service api
-  private evaluatorsUrl = environment.FF_API_URL + '/evaluators'; // URL to web api
-  private orgsUrl = environment.FF_API_URL + '/nonprofits';
   private etherscanUrl = "https://api-goerli.etherscan.io/api?module=stats&action=ethprice&apikey=" + environment.ETHERSCAN_API;
 
   httpOptions = {
@@ -28,24 +23,6 @@ export class DonateService {
     private http: HttpClient,
     private debugService: DebugService) {}
 
-  /** GET evaluator by id. Will 404 if id not found */
-  getEvaluator(id: string): Observable < Evaluator > {
-    const url = `${this.evaluatorsUrl}/${id}`;
-    return this.http.get < Evaluator > (url).pipe(
-      tap(_ => this.log(`fetched evaluator id=${id}`)),
-      catchError(this.handleError < Evaluator > (`getEvaluator _id=${id}`))
-    );
-  }
-
-  /** GET orgs from the server */
-  getOrgs(): Observable < Orgs > {
-    return this.http.get < Orgs > (this.orgsUrl)
-      .pipe(
-        tap(_ => this.log('fetched orgs')),
-        catchError(this.handleError < Orgs > ('getOrgs', null))
-      );
-  }
-
   /** GET price from Etherscan API */
   getETHPrice(): Observable<ETHPrice> {
     return this.http.get<ETHPrice>(this.etherscanUrl)
@@ -55,6 +32,7 @@ export class DonateService {
       );
   }
 
+  /** This order corresponds to the evaluatorId in the smart contract **/
   getEvaluatorData() {
       return [
         "5ea59469877c1400249976bf", "5ea4e24e883c0c50c561754e",

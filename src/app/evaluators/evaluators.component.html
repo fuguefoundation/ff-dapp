@@ -4,8 +4,8 @@
     [color]="spinnerColor">
 </mat-spinner>
 <mat-grid-list [cols]="breakpoint" rowHeight="2:1" (window:resize)="onResize($event)" *ngIf="evaluators">
-    <a *ngFor="let evaluator of evaluators.evaluators" class="col-1-4"
-    routerLink="/evaluators/{{evaluator._id}}">
+    <a *ngFor="let evaluator of evaluators" class="col-1-4"
+    routerLink="/evaluators/{{evaluator.id}}">
         <mat-grid-tile [style.background-image]="'url('+ evaluator.image +')'">
         <!-- <mat-grid-tile [style.background]="evaluator.color"> -->
             <div class="example-ripple-container mat-elevation-z4"

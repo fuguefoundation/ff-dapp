@@ -4,7 +4,7 @@ import { Observable, Subject } from 'rxjs';
 
 import {debounceTime, distinctUntilChanged, switchMap} from 'rxjs/operators';
 
-import { Orgs } from '../models/orgs';
+import { Org } from '../models/org';
 import { OrgsService } from '../services/orgs.service';
 
 @Component({
@@ -13,7 +13,7 @@ import { OrgsService } from '../services/orgs.service';
   styleUrls: [ './org-search.component.css' ]
 })
 export class OrgSearchComponent implements OnInit {
-  orgs$: Observable<Orgs>;
+  orgs$: Observable<Org[]>;
   private searchTerms = new Subject<string>();
 
   constructor(private orgsService: OrgsService) {}

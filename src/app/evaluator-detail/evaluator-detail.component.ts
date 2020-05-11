@@ -5,7 +5,7 @@ import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
 import { Evaluator } from '../models/evaluator';
 import { EvaluatorsService } from '../services/evaluators.service';
-import { Orgs } from '../models/orgs';
+import { Org } from '../models/org';
 import { OrgsService } from '../services/orgs.service';
 import { DonateService } from '../services/donate.service';
 import { ETHPrice } from '../models/eth_price';
@@ -20,12 +20,11 @@ declare let window: any;
 
 export class EvaluatorDetailComponent implements OnInit {
   evaluator: Evaluator;
-  orgs: Orgs = null;
-  nonprofits: Array < any > = [];
+  orgs: Org[] = [];
   numberOfSelectedOrgs: number;
   ethPrice: ETHPrice = null;
   displayedColumns: string[] = ['name', 'desc', 'impact'];
-  dataSource: MatTableDataSource < any > ;
+  dataSource: MatTableDataSource < Org > ;
   @ViewChild(MatSort, {
     static: true
   }) sort: MatSort;
@@ -45,9 +44,8 @@ export class EvaluatorDetailComponent implements OnInit {
 
   getEvaluator(): void {
     this.route.paramMap.subscribe(params => {
-      const id = params.get('_id');
+      const id = params.get('id');
       this.evaluatorsService.getEvaluator(id).subscribe(evaluator => {
-        console.log(evaluator);
         this.evaluator = evaluator;
         this.getOrgs();
       });
@@ -57,15 +55,15 @@ export class EvaluatorDetailComponent implements OnInit {
   getOrgs(): void {
     this.orgsService.getOrgs()
       .subscribe(orgs => {
-        this.orgs = orgs;
+          console.log(orgs);
+
         this.route.params.subscribe(params => {
-          orgs.nonprofits.forEach((o) => {
-            if (o.evaluatorId._id == params._id) {
-              this.nonprofits.push(o);
-            }
+          this.orgs = orgs.filter(o =>{
+              return o.evaluatorId._id == params.id;
           });
-          this.numberOfSelectedOrgs = this.nonprofits.length;
-          this.dataSource = new MatTableDataSource(this.nonprofits);
+          console.log(this.orgs);
+          this.numberOfSelectedOrgs = this.orgs.length;
+          this.dataSource = new MatTableDataSource(this.orgs);
           this.dataSource.sort = this.sort;
           this.getETHPrice();
         });
@@ -79,7 +77,7 @@ export class EvaluatorDetailComponent implements OnInit {
       });
   }
 
-  web3Donate(id): void {
+  web3Donate(id: string): void {
     this.router.navigateByUrl('donate/' + id)
   }
 

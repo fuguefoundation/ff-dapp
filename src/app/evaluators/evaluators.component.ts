@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Evaluators } from '../models/evaluators';
+import { Evaluator } from '../models/evaluator';
 import { EvaluatorsService } from '../services/evaluators.service';
 import { ThemePalette } from '@angular/material/core';
 
@@ -11,7 +11,7 @@ declare let window: any;
   styleUrls: [ './evaluators.component.css' ]
 })
 export class EvaluatorsComponent implements OnInit {
-  evaluators: Evaluators;
+  evaluators: Evaluator[];
   breakpoint: number;
 
   //MatSpinner
@@ -34,9 +34,7 @@ export class EvaluatorsComponent implements OnInit {
   getEvaluators(): void {
     this.evaluatorsService.getEvaluators()
       .subscribe(evaluators => {
-          //this.evaluators = evaluators.slice(0, 5);
-          this.evaluators = evaluators;
-          this.evaluators.evaluators = this.evaluatorsService.shuffle(evaluators.evaluators);
+          this.evaluators = this.evaluatorsService.shuffle(evaluators);
           console.log(this.evaluators);
       });
   }

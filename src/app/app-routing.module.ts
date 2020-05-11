@@ -21,12 +21,12 @@ const routes: Routes = [
 		data: {title: "Home | Fugue Foundation"}
 	},
 	{
-		path: 'evaluators/:_id',
+		path: 'evaluators/:id',
 		component: EvaluatorDetailComponent,
 		data: {title: "Evaluator | Fugue Foundation"}
 	},
 	{
-		path: 'donate/:_id',
+		path: 'donate/:id',
 		component: DonateComponent,
 		data: {title: "Donations | Fugue Foundation"}
 	},
@@ -36,7 +36,7 @@ const routes: Routes = [
 		data: {title: "Nonprofits | Fugue Foundation"}
 	},
     {
-		path: 'orgs/:_id',
+		path: 'orgs/:id',
 		component: OrgDetailComponent,
 		data: {title: "Nonprofit | Fugue Foundation"}
 	},

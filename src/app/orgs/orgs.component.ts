@@ -1,7 +1,7 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
-import { Orgs } from '../models/orgs';
+import { Org } from '../models/org';
 import { OrgsService } from '../services/orgs.service';
 
 @Component({
@@ -11,9 +11,9 @@ import { OrgsService } from '../services/orgs.service';
 })
 export class OrgsComponent implements OnInit {
 
-    orgs: Orgs;
+    orgs: Org[];
     displayedColumns: string[] = ['name', 'evaluator', 'short_desc', 'url'];
-    dataSource: MatTableDataSource<any>;
+    dataSource: MatTableDataSource<Org>;
     @ViewChild(MatSort, {static: true}) sort: MatSort;
 
     constructor(private orgsService: OrgsService) { }
@@ -26,9 +26,9 @@ export class OrgsComponent implements OnInit {
         this.orgsService.getOrgs()
             .subscribe(orgs => {
                 this.orgs = orgs;
-                this.orgs.nonprofits = this.orgsService.shuffle(orgs.nonprofits);
-                console.log(orgs);
-                this.dataSource = new MatTableDataSource(this.orgs.nonprofits);
+                this.orgs = this.orgsService.shuffle(orgs);
+                console.log(this.orgs);
+                this.dataSource = new MatTableDataSource(this.orgs);
                 this.dataSource.sort = this.sort;
             });
     }

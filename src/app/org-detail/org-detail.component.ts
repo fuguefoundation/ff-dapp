@@ -1,5 +1,5 @@
 import { Component, OnInit, Input } from '@angular/core';
-import { Router, ActivatedRoute } from '@angular/router';
+import { ActivatedRoute } from '@angular/router';
 import { Location } from '@angular/common';
 import { Org } from '../models/org';
 import { OrgsService } from '../services/orgs.service';
@@ -14,7 +14,6 @@ export class OrgDetailComponent implements OnInit {
 
   constructor(
     private route: ActivatedRoute,
-    private router: Router,
     private orgsService: OrgsService,
     private location: Location
   ) {}
@@ -25,25 +24,11 @@ export class OrgDetailComponent implements OnInit {
 
   getOrg(): void {
     this.route.paramMap.subscribe(params => {
-        const id = params.get('_id');
+        const id = params.get('id');
         this.orgsService.getOrg(id).subscribe(org => {
           this.org = org;
-          console.log(this.org);
         });
     });
-  }
-
-//   getOrg(): void {
-//     const id = +this.route.snapshot.paramMap.get('id');
-//     this.orgsService.getOrg(id)
-//       .subscribe(org => {
-//           this.org = org;
-//         });
-//   }
-
-  web3Donate(id): void {
-      console.log('metamask');
-      this.router.navigateByUrl('donate/' + id)
   }
 
   goBack(): void {

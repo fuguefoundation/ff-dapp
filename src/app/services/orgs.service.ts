@@ -6,7 +6,7 @@ import { catchError, map, tap } from 'rxjs/operators';
 
 import { environment } from 'src/environments/environment';
 import { Org } from '../models/org';
-import { Orgs } from '../models/orgs';
+//import { Orgs } from '../models/orgs';
 import { DebugService } from './debug.service';
 
 @Injectable({
@@ -28,11 +28,11 @@ export class OrgsService {
     private debugService: DebugService) {}
 
   /** GET orgs from the server */
-  getOrgs(): Observable < Orgs > {
-    return this.http.get < Orgs > (this.orgsUrl)
+  getOrgs(): Observable < Org[] > {
+    return this.http.get < Org[] > (this.orgsUrl)
       .pipe(
         tap(_ => this.log('fetched orgs')),
-        catchError(this.handleError < Orgs > ('getOrgs', null))
+        catchError(this.handleError < Org[] > ('getOrgs', []))
       );
   }
 
@@ -53,6 +53,7 @@ export class OrgsService {
   /** GET org by id. Will 404 if id not found */
   getOrg(id: string): Observable < Org > {
     const url = `${this.orgsUrl}/${id}`;
+    console.log(url);
     return this.http.get < Org > (url).pipe(
       tap(_ => this.log(`fetched org id=${id}`)),
       catchError(this.handleError < Org > (`getOrg id=${id}`))
@@ -60,16 +61,16 @@ export class OrgsService {
   }
 
   /* GET orgs whose name contains search term */
-  searchOrgs(term: string): Observable < Orgs > {
+  searchOrgs(term: string): Observable < Org[] > {
     if (!term.trim()) {
       // if not search term, return empty org array.
       return of();
     }
-    return this.http.get < Orgs > (`${this.orgsUrl}/?name=${term}`).pipe(
+    return this.http.get < Org[] > (`${this.orgsUrl}/?name=${term}`).pipe(
       tap(x => x !== undefined ?
         this.log(`found orgs matching "${term}"`) :
         this.log(`no orgs matching "${term}"`)),
-      catchError(this.handleError < Orgs > ('searchOrgs', null))
+      catchError(this.handleError < Org[] > ('searchOrgs', []))
     );
   }
 

@@ -4,10 +4,10 @@
 <br>
 <div class="row">
   <div class="col-6" *ngIf="orgs">
-    <p>You chose <strong>{{evaluator.evaluator.name}}</strong> as your evaluator to aid with
-      <strong>{{evaluator.evaluator.focus}}</strong></p>
+    <p>You chose <strong>{{evaluator.name}}</strong> as your evaluator to aid with
+      <strong>{{evaluator.focus}}</strong></p>
     <p>Your donation will be split evenly among the following charities:</p>
-    <p><span *ngFor="let o of orgs.nonprofits"><strong>{{o.name}}</strong> | </span></p>
+    <p><span *ngFor="let o of orgs"><strong>{{o.name}}</strong> | </span></p>
   </div>
   <div class="col-6" *ngIf="walletState">
     <h3>Wallet State</h3>

@@ -6,8 +6,10 @@ import { Web3Service } from '../services/web3.service';
 import { WalletState } from '../models/walletState';
 import { Transaction } from '../models/tx';
 import { Evaluator } from '../models/evaluator';
-import { Orgs } from '../models/orgs';
+import { Org } from '../models/org';
 import { DonateService } from '../services/donate.service';
+import { EvaluatorsService } from '../services/evaluators.service';
+import { OrgsService } from '../services/orgs.service';
 import { environment } from 'src/environments/environment';
 
 declare let require: any;
@@ -23,8 +25,7 @@ export class DonateComponent implements OnInit {
   NFT: any;
   evaluator: Evaluator;
   private paramsId: string;
-  private
-  orgs: Orgs;
+  public orgs: Org[];
   public walletState: WalletState;
   public tx: Transaction;
   public networkName: String;
@@ -36,6 +37,8 @@ export class DonateComponent implements OnInit {
     private route: ActivatedRoute,
     private web3Service: Web3Service,
     private donateService: DonateService,
+    private orgsService: OrgsService,
+    private evaluatorsService: EvaluatorsService,
     private fb: FormBuilder
   ) {}
 
@@ -52,7 +55,7 @@ export class DonateComponent implements OnInit {
       this.tx = tx;
     });
     this.createFormGroups();
-    this.getEvaluator();
+    this.getEvaluatorAndOrgs();
   }
 
   createFormGroups() {
@@ -61,40 +64,28 @@ export class DonateComponent implements OnInit {
     });
   }
 
-  getEvaluator(): void {
+  getEvaluatorAndOrgs(): void {
     this.route.paramMap.subscribe(params => {
-      this.paramsId = params.get('_id');
-      this.donateService.getEvaluator(this.paramsId).subscribe(evaluator => {
-        console.log(evaluator);
-        this.evaluator = evaluator;
-        this.getOrgs();
+      this.paramsId = params.get('id');
+      this.evaluatorsService.getEvaluator(this.paramsId).subscribe(e => {
+        this.evaluator = e;
+      });
+      this.orgsService.getOrgs().subscribe(data => {
+        this.orgs = data.filter(o => {
+          return o.evaluatorId._id == this.paramsId;
+        });
       });
     });
   }
 
-  getOrgs(): void {
-    this.donateService.getOrgs()
-      .subscribe(orgs => {
-        this.orgs = orgs;
-        for (let i = 0; i < orgs.nonprofits.length;) {
-          if (orgs.nonprofits[i].evaluatorId._id !== this.paramsId) {
-            this.orgs.nonprofits.splice(i, 1);
-          } else {
-            i++;
-          }
-        }
-        console.log(this.orgs);
-      });
-  }
-
   donate(amount): void {
-    let evaluatorData: Array <string> = this.donateService.getEvaluatorData();
+    let evaluatorData: Array < string > = this.donateService.getEvaluatorData();
     let data = this.web3Service.getHexValue(evaluatorData.indexOf(this.paramsId));
     let donation = {
-        from: this.walletState.address,
-        to: environment.FFPAYMENTSPLIT_ADDR,
-        value: amount,
-        data: data
+      from: this.walletState.address,
+      to: environment.FFPAYMENTSPLIT_ADDR,
+      value: amount,
+      data: data
     }
     this.web3Service.donate(donation);
   }

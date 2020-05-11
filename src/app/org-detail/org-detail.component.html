@@ -5,28 +5,28 @@
   <div class="col-6" *ngIf="org">
     <mat-card class="example-card">
       <mat-card-header>
-        <div mat-card-avatar class="example-header-image" [style.background-image]="'url('+ org.nonprofit.logo +')'">
+        <div mat-card-avatar class="example-header-image" [style.background-image]="'url('+ org.logo +')'">
         </div>
-        <mat-card-title>{{org.nonprofit.name | uppercase}}</mat-card-title>
-        <mat-card-subtitle>Evaluator: {{org.nonprofit.evaluatorId.name}}</mat-card-subtitle>
+        <mat-card-title>{{org.name | uppercase}}</mat-card-title>
+        <mat-card-subtitle>Evaluator: {{org.evaluatorId.name}}</mat-card-subtitle>
       </mat-card-header>
-      <img mat-card-image src="{{org.nonprofit.image}}" alt="{{org.nonprofit.name}}">
+      <img mat-card-image src="{{org.image}}" alt="{{org.name}}">
       <mat-card-content>
         <p>
-          {{org.nonprofit.short_desc}}
+          {{org.short_desc}}
         </p>
       </mat-card-content>
       <mat-card-actions>
-        <a mat-raised-button href="{{org.nonprofit.url}}" target="_blank" title="{{org.nonprofit.name}}">Homepage</a>
-        <a mat-raised-button class="ff-red-button" href="{{org.nonprofit.evaluatorId.url}}" target="_blank"
-          title="{{org.nonprofit.evaluatorId.name}}">EA</a>
+        <a mat-raised-button href="{{org.url}}" target="_blank" title="{{org.name}}">Homepage</a>
+        <a mat-raised-button class="ff-red-button" href="{{org.evaluatorId.url}}" target="_blank"
+          title="{{org.evaluatorId.name}}">EA</a>
       </mat-card-actions>
     </mat-card>
   </div>
   <div class="col-6 large-para-text" *ngIf="org">
-    <h2>About {{org.nonprofit.name}}</h2>
-    <p>{{org.nonprofit.desc}}</p>
+    <h2>About {{org.name}}</h2>
+    <p>{{org.desc}}</p>
     <h2>Donation Impact</h2>
-    <p>{{org.nonprofit.stats.metric1}}</p>
+    <p>{{org.stats.metric1}}</p>
   </div>
 </div>
