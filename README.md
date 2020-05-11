@@ -27,8 +27,12 @@ Have a look at a working [prototype](https://fuguefoundation.org/dev/prototype_v
 1. Clone the repo and `npm install`
 2. Install [Truffle](https://www.trufflesuite.com/docs/truffle/getting-started/installation) and run `truffle compile` to generate contract abstracts inside `/build/contracts` folder
     - Currently the smart contract capabilities of the dapp are being developed in a [different repo](https://github.com/fuguefoundation/ff-contracts). These contracts are here as filler for when the repos are integrated.
-3. Adjust environment variables as appropriate inside `src/environments` folder. You'll need API keys from Block Native and Etherscan if you want those integrations, and the FF API link is available on request.
-4. `ng serve` and navigate to `http://localhost:4200/`
+3. Uncomment lines in following files to allow for local development with the HTTP requests:
+    * `app.module.ts`: import statements and import declaration in `NgModule` for `HttpClientInMemoryWebApiModule` and `InMemoryDataService`
+    * `evaulators.service.ts`: `private evaluatorsUrl`
+    * `orgs.service.ts`: `private orgsUrl`
+4. Adjust environment variables as appropriate inside `src/environments` folder (i.e., add API keys) for Block Native and Etherscan integration (optional).
+5. `ng serve` and navigate to `http://localhost:4200/`
 
 ## Testing
 
