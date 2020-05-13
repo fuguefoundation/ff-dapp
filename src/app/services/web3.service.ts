@@ -2,7 +2,7 @@ import {Injectable} from '@angular/core';
 import { Subject } from 'rxjs';
 declare let require: any;
 const Web3 = require('web3');
-const contract = require('@truffle/contract');
+//const contract = require('@truffle/contract');
 import { DebugService } from './debug.service';
 import Notify from 'bnc-notify';
 import Onboard from 'bnc-onboard'
@@ -17,7 +17,7 @@ export class Web3Service {
   private web3: any;
   private onboard: any;
   public currentWalletState$ = new Subject<WalletState>();
-  public tx$ = new Subject<Transaction>();
+  public tx$ = new Subject<any>();
 
   //Block Native ONBOARD options
   initializationOptions = {
@@ -48,18 +48,18 @@ export class Web3Service {
     this.blockNativeOnboard(this.initializationOptions);
   }
 
-  public async artifactsToContract(artifacts) {
-    if (!this.web3) {
-        const delay = new Promise(resolve => setTimeout(resolve, 1000));
-        await delay;
-        return await this.artifactsToContract(artifacts);
-    }
+//   public async artifactsToContract(artifacts) {
+//     if (!this.web3) {
+//         const delay = new Promise(resolve => setTimeout(resolve, 1000));
+//         await delay;
+//         return await this.artifactsToContract(artifacts);
+//     }
 
-    const contractAbstraction = contract(artifacts);
-    contractAbstraction.setProvider(this.web3.currentProvider);
-    this.log('artifactsToContract called');
-    return contractAbstraction;
-  }
+//     const contractAbstraction = contract(artifacts);
+//     contractAbstraction.setProvider(this.web3.currentProvider);
+//     this.log('artifactsToContract called');
+//     return contractAbstraction;
+//   }
 
   private async blockNativeOnboard(options) {
     this.onboard = Onboard(options);

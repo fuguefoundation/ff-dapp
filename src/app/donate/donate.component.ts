@@ -13,7 +13,7 @@ import { OrgsService } from '../services/orgs.service';
 import { environment } from 'src/environments/environment';
 
 declare let require: any;
-const ff_artifacts = require('../../../build/contracts/FFPaymentSplit.json');
+//const ff_artifacts = require('../../../build/contracts/FFPaymentSplit.json');
 
 @Component({
   selector: 'app-donate',
@@ -43,10 +43,10 @@ export class DonateComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    this.web3Service.artifactsToContract(ff_artifacts)
-      .then((abstract) => {
-        this.NFT = abstract;
-      });
+    // this.web3Service.artifactsToContract(ff_artifacts)
+    //   .then((abstract) => {
+    //     this.NFT = abstract;
+    //   });
     this.web3Service.currentWalletState$.subscribe(state => {
       this.walletState = state;
       this.networkName = this.getNetworkName(this.walletState.network);

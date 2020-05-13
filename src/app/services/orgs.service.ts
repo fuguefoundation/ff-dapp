@@ -6,7 +6,6 @@ import { catchError, map, tap } from 'rxjs/operators';
 
 import { environment } from 'src/environments/environment';
 import { Org } from '../models/org';
-//import { Orgs } from '../models/orgs';
 import { DebugService } from './debug.service';
 
 @Injectable({
@@ -53,7 +52,6 @@ export class OrgsService {
   /** GET org by id. Will 404 if id not found */
   getOrg(id: string): Observable < Org > {
     const url = `${this.orgsUrl}/${id}`;
-    console.log(url);
     return this.http.get < Org > (url).pipe(
       tap(_ => this.log(`fetched org id=${id}`)),
       catchError(this.handleError < Org > (`getOrg id=${id}`))
