@@ -45,7 +45,7 @@ export class Web3Service {
   }
 
   constructor(private debugService: DebugService) {
-    this.blockNativeOnboard(this.initializationOptions);
+    this.blockNativeOnboard();
   }
 
 //   public async artifactsToContract(artifacts) {
@@ -61,8 +61,8 @@ export class Web3Service {
 //     return contractAbstraction;
 //   }
 
-  private async blockNativeOnboard(options) {
-    this.onboard = Onboard(options);
+  public async blockNativeOnboard() {
+    this.onboard = Onboard(this.initializationOptions);
     let walletSelected: boolean, readyToTransact: boolean;
     try {
         walletSelected = await this.onboard.walletSelect();

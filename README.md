@@ -1,3 +1,5 @@
+![GitHub](https://img.shields.io/github/license/fuguefoundation/ff-dapp)
+
 <p align="center">
   <img src="https://github.com/fuguefoundation/ff-dapp/blob/master/src/assets/images/logo_150.png">
 </p>
@@ -36,7 +38,12 @@ The live prototype is pulling data from a RESTful API, and the `web3` occurs on 
 
 ## Contributing to the project
 
-This is an open source project. Contributions are welcomed & encouraged! :smile: If you'd like to improve the code base, please see [Contributing Guidelines](CONTRIBUTE.md).
+This is an open source project. Contributions are welcomed & encouraged! :smile: If you'd like to improve the code base, please see [Contributing Guidelines](./.github/CONTRIBUTE.md).
+
+## Workspace
+* Angular: 10.0.2
+* Angular CLI: 10.0.1
+* Node: 12.16.1
 
 ## References
 * [Web3](https://github.com/ethereum/wiki/wiki/JavaScript-API)

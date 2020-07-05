@@ -17,3 +17,6 @@ mat-card-content p {
 .large-para-text p {
     font-size: 1.3em;
 }
+aside.bn-onboard-modal{
+    z-index: 1;
+}

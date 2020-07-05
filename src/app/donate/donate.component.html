@@ -34,7 +34,7 @@
           <mat-card-title>Make Donation</mat-card-title>
         </mat-card-header>
         <mat-card-content>
-          <mat-button-toggle-group #group="matButtonToggleGroup">
+          <mat-button-toggle-group #buttonToggle="matButtonToggleGroup">
             <mat-button-toggle value=".01" aria-label="Small donation">
               .01
             </mat-button-toggle>
@@ -48,10 +48,10 @@
               10
             </mat-button-toggle>
           </mat-button-toggle-group>
-          <div class="example-selected-value">Selected value: {{group.value}}</div>
+          <div class="example-selected-value">Selected value: {{buttonToggle.value}}</div>
           <mat-form-field>
             <input type="number" #donationAmount matInput id="amount" placeholder="Amount to spend (in wei)"
-              formControlName="amount" value="{{group.value}}">
+              formControlName="amount" value="{{buttonToggle.value}}">
             <mat-error *ngIf="donationForm.invalid">{{formErrorMsg('amount')}}</mat-error>
           </mat-form-field>
           <button mat-raised-button class="ff-red-button" (click)="donate(donationAmount.value)"
