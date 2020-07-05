@@ -2,20 +2,6 @@
   <img src="https://github.com/fuguefoundation/ff-dapp/blob/master/src/assets/images/logo_150.png">
 </p>
 
-## Stop COVID-19 Hackathon Deliverables
-
-1. Working Prototypes: 
-    - [Decentralized App](https://fuguefoundation.org/dev/prototype_v0)
-    - [RESTful API](https://ff-effective-altruism-api.herokuapp.com/api/v0/nonprofits)
-2. Pitch Presentation:
-    - [Video (YouTube)](https://www.youtube.com/watch?v=NHzl7chYPq4)
-    - [PDF](https://fuguefoundation.org/docs/ff-prospectus.pdf) or [HTML](https://fuguefoundation.org/docs/) 
-4. Other relevant links:
-    - [Fugue Foundation homepage](https://fuguefoundation.org)
-    - [API GitHub repo](https://github.com/fuguefoundation/ff-api)
-    - [Smart Contracts GitHub repo](https://github.com/fuguefoundation/ff-contracts)
-    - [Docs repo](https://github.com/fuguefoundation/ff-docs)
-
 ## About the Project
 
 [Fugue Foundation](https://fuguefoundation.org) is a nonprofit dedicated to using open source, decentralized technology to achieve charitable goals rooted in the principles of effective altruism. Read this [blog post](https://blog.fuguefoundation.org/ff-platform-overiew/) to learn more about the use case and architecture of our flagship project, the Fugue Foundation charitable donation platform and effective altruism research API.

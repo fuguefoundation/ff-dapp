@@ -18,7 +18,8 @@
       <li>Wallet: {{walletState.wallet.name}}</li>
       <li>Mobile: {{walletState.mobileDevice}}</li>
     </ul>
-    <p *ngIf="tx"><strong>Transaction: </strong><a class="ff-link" href="https://goerli.etherscan.io/tx/{{tx.hash}}" target="_blank">View on
+    <p *ngIf="tx"><strong>Transaction: </strong><a class="ff-link" href="https://goerli.etherscan.io/tx/{{tx.hash}}"
+        target="_blank">View on
         Etherscan</a></p>
   </div>
   <div class="col-6" *ngIf="!walletState">
@@ -33,9 +34,24 @@
           <mat-card-title>Make Donation</mat-card-title>
         </mat-card-header>
         <mat-card-content>
+          <mat-button-toggle-group #group="matButtonToggleGroup">
+            <mat-button-toggle value=".01" aria-label="Small donation">
+              .01
+            </mat-button-toggle>
+            <mat-button-toggle value=".1" aria-label="Medium donation">
+              .1
+            </mat-button-toggle>
+            <mat-button-toggle value="1" aria-label="Large donation">
+              1
+            </mat-button-toggle>
+            <mat-button-toggle value="10" aria-label="Huge donation">
+              10
+            </mat-button-toggle>
+          </mat-button-toggle-group>
+          <div class="example-selected-value">Selected value: {{group.value}}</div>
           <mat-form-field>
             <input type="number" #donationAmount matInput id="amount" placeholder="Amount to spend (in wei)"
-              formControlName="amount">
+              formControlName="amount" value="{{group.value}}">
             <mat-error *ngIf="donationForm.invalid">{{formErrorMsg('amount')}}</mat-error>
           </mat-form-field>
           <button mat-raised-button class="ff-red-button" (click)="donate(donationAmount.value)"
@@ -58,4 +74,5 @@
       </mat-card-content>
     </mat-card>
   </div>
-</div><!--end row-->
+</div>
+<!--end row-->

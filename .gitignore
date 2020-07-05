@@ -8,6 +8,7 @@
 /bazel-out
 /build
 /misc
+notes.md
 
 # dependencies
 /node_modules

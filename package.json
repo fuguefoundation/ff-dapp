@@ -1,7 +1,8 @@
 {
   "name": "ff-dapp",
   "author": "FugueFoundation",
-  "version": "0.4.0",
+  "version": "0.7.2020",
+  "description": "Effective altruism charity research tool and smart contract based donation platform",
   "scripts": {
     "ng": "ng",
     "start": "ng serve",
