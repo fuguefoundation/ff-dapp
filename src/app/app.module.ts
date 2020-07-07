@@ -22,6 +22,7 @@ import { DataComponent } from './data/data.component';
 import { NavComponent } from './nav/nav.component';
 import { DonateComponent } from './donate/donate.component';
 import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
+import { ReceiptComponent } from './receipt/receipt.component';
 
 @NgModule({
   imports: [
@@ -52,7 +53,8 @@ import { PageNotFoundComponent } from './page-not-found/page-not-found.component
     DataComponent,
     NavComponent,
     DonateComponent,
-    PageNotFoundComponent
+    PageNotFoundComponent,
+    ReceiptComponent
   ],
   providers: [],
   bootstrap: [AppComponent]

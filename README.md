@@ -38,7 +38,7 @@ The live prototype is pulling data from a RESTful API, and the `web3` occurs on 
 
 ## Contributing to the project
 
-This is an open source project. Contributions are welcomed & encouraged! :smile: If you'd like to improve the code base, please see [Contributing Guidelines](./.github/CONTRIBUTE.md).
+This is an open source project. Contributions are welcomed & encouraged! :smile: If you'd like to improve the code base, please see [Contributing Guidelines](https://github.com/fuguefoundation/ff-dapp/blob/master/.github/CONTRIBUTING.md).
 
 ## Workspace
 * Angular: 10.0.2

@@ -49,3 +49,6 @@ mat-sidenav-content {
     background: #b31121;
     color: #fff;
 }
+.active-link {
+    color:#b31121;
+}

@@ -56,6 +56,9 @@
           </mat-form-field>
           <button mat-raised-button class="ff-red-button" (click)="donate(donationAmount.value)"
             [disabled]="!donationForm.valid || !walletState">Donate</button>
+          <section class="checkbox-section">
+            <mat-checkbox #checkBox formControlName="checkBox">Acknowledge Terms of Service and Privacy Policy</mat-checkbox>
+          </section>
         </mat-card-content>
       </mat-card>
     </form>

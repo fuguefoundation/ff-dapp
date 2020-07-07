@@ -20,3 +20,6 @@ mat-card-content p {
 aside.bn-onboard-modal{
     z-index: 1;
 }
+.mat-checkbox-checked.mat-accent .mat-checkbox-background {
+    background-color: #b31121;
+}

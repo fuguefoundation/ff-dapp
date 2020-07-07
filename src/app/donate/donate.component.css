@@ -10,3 +10,9 @@ input {
   font-size: 1em;
   padding-left: .4em;
 }
+.checkbox-section {
+    display: flex;
+    align-content: center;
+    align-items: center;
+    height: 60px;
+}

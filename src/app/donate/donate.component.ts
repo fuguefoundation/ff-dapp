@@ -60,7 +60,8 @@ export class DonateComponent implements OnInit {
 
   createFormGroups() {
     this.donationForm = this.fb.group({
-      amount: ['', [Validators.required, Validators.pattern('^(0|[1-9][0-9]*)$')]]
+      amount: ['', [Validators.required, Validators.pattern('^(0|[1-9][0-9]*)$')]],
+      checkBox: ['', [Validators.requiredTrue]]
     });
   }
 
