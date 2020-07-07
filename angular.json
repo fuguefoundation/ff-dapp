@@ -13,6 +13,18 @@
         "build": {
           "builder": "@angular-devkit/build-angular:browser",
           "options": {
+            "allowedCommonJsDependencies": [
+                "bs58check", "web3", "web3-provider-engine/subproviders/filters", 
+                "web3-provider-engine/subproviders/subscriptions", "web3-provider-engine/subproviders/hooked-wallet", 
+                "web3-provider-engine/subproviders/rpc", "web3-provider-engine", "ethereumjs-tx", 
+                "trezor-connect", "ethereumjs-util", "hdkey", "@toruslabs/torus-embed", "walletlink", 
+                "@walletconnect/web3-provider", "util", "assert", "sturdy-websocket", "eth-json-rpc-filters", 
+                "async/waterfall", "async/parallel", "u2f-api", "penpal", "randomhex", "secp256k1", "xhr", 
+                "buffer", "async/map", "@walletconnect/qrcode-modal", "eth-block-tracker", "eth-sig-util", 
+                "rlp", "@babel/runtime/regenerator", "ethereum-private-key-to-address", "eth-json-rpc-errors", "async/eachSeries", 
+                "@babel/runtime/helpers/inherits", "@babel/runtime/helpers/possibleConstructorReturn", "@babel/runtime/helpers/toConsumableArray", 
+                "to-hex", "ethereum-public-key-to-address", "uuidv4"
+             ],
             "outputPath": "dist/ff-dapp",
             "index": "src/index.html",
             "main": "src/main.ts",
