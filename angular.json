@@ -23,7 +23,9 @@
                 "buffer", "async/map", "@walletconnect/qrcode-modal", "eth-block-tracker", "eth-sig-util", 
                 "rlp", "@babel/runtime/regenerator", "ethereum-private-key-to-address", "eth-json-rpc-errors", "async/eachSeries", 
                 "@babel/runtime/helpers/inherits", "@babel/runtime/helpers/possibleConstructorReturn", "@babel/runtime/helpers/toConsumableArray", 
-                "to-hex", "ethereum-public-key-to-address", "uuidv4"
+                "to-hex", "ethereum-public-key-to-address", "uuidv4", "crypto", "bn.js", "safe-buffer", "ethjs-util", 
+                "web3-utils", "ethereum-private-key-to-public-key", "@walletconnect/utils", "@walletconnect/http-connection", 
+                "@walletconnect/client"
              ],
             "outputPath": "dist/ff-dapp",
             "index": "src/index.html",
