@@ -1,0 +1,69 @@
+<div class="row">
+  <div class="col-6">
+    <form [formGroup]="eventForm">
+      <mat-card>
+        <mat-card-header>
+          <mat-card-title>Select Event</mat-card-title>
+        </mat-card-header>
+        <mat-card-content>
+          <mat-form-field>
+            <mat-label>Events</mat-label>
+            <mat-select #eventSelected formControlName="eventName">
+              <mat-option *ngFor="let e of events; index as i;" value={{i}}>{{e.name}}</mat-option>
+            </mat-select>
+          </mat-form-field>
+          <mat-card-actions>
+            <button mat-raised-button class="ff-red-button" [disabled]="!eventForm.valid"
+              (click)="onEventSelected(eventSelected.value)">Select</button>
+          </mat-card-actions>
+        </mat-card-content>
+      </mat-card>
+    </form>
+  </div><!-- end col-->
+  <div class="col-6">
+    <div *ngFor="let e of eventData; index as i;">
+      <ul *ngIf="eventData">
+        <li>Amount: {{e.amount}}</li>
+        <li>Evaluator ID: {{e.evaluatorID}}</li>
+        <li>Donated to: {{e.to}}</li>
+        <li>Donor: {{e.donor}}</li>
+        <li>DonationID: {{e.donationID}}</li>
+        <li>{{e.tx}}</li>
+        <li>{{e.timestamp}}</li>
+      </ul>
+    </div>
+  </div><!-- end col-->
+</div>
+
+<!-- NFT -->
+<div class="row">
+  <div class="col-6">
+    <form [formGroup]="nftForm">
+      <mat-card>
+        <mat-card-header>
+          <mat-card-title>NFT Tx</mat-card-title>
+        </mat-card-header>
+        <mat-card-content>
+          <mat-form-field>
+            <input type="text" #nftTx matInput id="txHash" placeholder="Tx Hash" formControlName="hash">
+            <mat-error *ngIf="nftForm.invalid">{{formErrorMsg('hash')}}</mat-error>
+          </mat-form-field>
+          <mat-card-actions>
+            <button mat-raised-button class="ff-red-button" (click)="createFugue(nftTx.value)"
+              [disabled]="!nftForm.valid">Create</button>
+          </mat-card-actions>
+          <p>Example Hash: 0x97649e7644789c142b42f9b5cb07c95f814e0b15a88fdb673394</p>
+        </mat-card-content>
+      </mat-card>
+    </form>
+  </div>
+  <div class="col-6">
+    <span [style.color]="colors.hex1">Hex1</span> | <span [style.color]="colors.hex2">Hex2</span> | <span
+      [style.color]="colors.hex3">Hex3</span> | <span [style.color]="colors.hex4">Hex4</span> | <span
+      [style.color]="colors.hex5">Hex5</span>
+    | <span [style.color]="colors.hex6">Hex6</span> | <span [style.color]="colors.hex7">Hex7</span> | <span
+      [style.color]="colors.hex8">Hex8</span> | <span [style.color]="colors.hex9">Hex9</span> | <span
+      [style.color]="colors.hex10">Hex10</span>
+  </div>
+</div>
+<!--end row-->
