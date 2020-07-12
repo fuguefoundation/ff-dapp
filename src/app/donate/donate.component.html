@@ -57,7 +57,7 @@
           <button mat-raised-button class="ff-red-button" (click)="donate(donationAmount.value)"
             [disabled]="!donationForm.valid || !walletState">Donate</button>
           <section class="checkbox-section">
-            <mat-checkbox #checkBox formControlName="checkBox">Acknowledge Terms of Service and Privacy Policy</mat-checkbox>
+            <mat-checkbox #checkBox formControlName="checkBox">Acknowledge <a href="https://fuguefoundation.org/legal#terms" target="_blank" class="ff-link">Terms of Service</a></mat-checkbox>
           </section>
         </mat-card-content>
       </mat-card>

@@ -12,6 +12,7 @@ import {MatRippleModule} from '@angular/material/core';
 import {MatTableModule} from '@angular/material/table';
 import {MatFormFieldModule} from '@angular/material/form-field';
 import {MatInputModule} from '@angular/material/input';
+import {MatSelectModule} from '@angular/material/select';
 import {MatSortModule} from '@angular/material/sort';
 import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
 import {MatCheckboxModule} from '@angular/material/checkbox';
@@ -32,6 +33,7 @@ import {MatCheckboxModule} from '@angular/material/checkbox';
     MatTableModule,
     MatFormFieldModule,
     MatInputModule,
+    MatSelectModule,
     MatSortModule,
     MatProgressSpinnerModule,
     MatCheckboxModule
@@ -49,6 +51,7 @@ import {MatCheckboxModule} from '@angular/material/checkbox';
     MatTableModule,
     MatFormFieldModule,
     MatInputModule,
+    MatSelectModule,
     MatSortModule,
     MatProgressSpinnerModule,
     MatCheckboxModule

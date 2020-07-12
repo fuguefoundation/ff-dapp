@@ -97,6 +97,10 @@ export class Web3Service {
       })
   }
 
+  public getWeb3(): any {
+    return this.web3;
+  }
+
   /** Add 1 because of zero index and return its hex value for msg.data */
   public getHexValue(index: number) {
       let evalId = index + 1;

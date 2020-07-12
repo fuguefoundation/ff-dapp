@@ -7,7 +7,7 @@ import { DonateComponent }   from './donate/donate.component';
 import { OrgsComponent }      from './orgs/orgs.component';
 import { OrgDetailComponent }  from './org-detail/org-detail.component';
 import { AboutComponent }      from './about/about.component';
-import { ReceiptComponent }      from './receipt/receipt.component';
+import { ExploreComponent }      from './explore/explore.component';
 import { PageNotFoundComponent }      from './page-not-found/page-not-found.component';
 
 const routes: Routes = [
@@ -47,10 +47,10 @@ const routes: Routes = [
 		data: {title: "About | Fugue Foundation"}
 	},
     {
-		path: 'receipt',
-		component: ReceiptComponent,
-		data: {title: "Receipt | Fugue Foundation"}
-	},
+		path: 'explore',
+		component: ExploreComponent,
+		data: {title: "Explore | Fugue Foundation"}
+    },
     {
 		path: '**',
 		component: PageNotFoundComponent,
