@@ -65,7 +65,7 @@ export class Web3Service {
 //     return contractAbstraction;
 //   }
 
-  public async blockNativeOnboard(change: boolean) {
+  public async blockNativeOnboard(change: boolean): Promise<boolean> {
     if(change){
         window.localStorage.removeItem('ff-dapp-wallet');
     }
@@ -88,8 +88,10 @@ export class Web3Service {
     }
     if (walletSelected && readyToTransact){
         this.currentWalletState$.next(this.onboard.getState());
+        return true;
     } else {
         this.log('No wallet detected');
+        return false;
     }
   }
 
@@ -124,7 +126,7 @@ export class Web3Service {
       return this.web3.utils.toHex(evalId);
   }
 
-  public convertETHToWei(amount: number) {
+  public convertETHToWei(amount) {
     return this.web3.utils.toWei(amount, 'ether');
   }
 

@@ -7,7 +7,7 @@ import {MatToolbarModule} from '@angular/material/toolbar';
 import {MatListModule} from '@angular/material/list';
 import {MatIconModule} from '@angular/material/icon';
 import {MatButtonModule} from '@angular/material/button';
-import {MatButtonToggleModule} from '@angular/material/button-toggle';
+//import {MatButtonToggleModule} from '@angular/material/button-toggle';
 import {MatRippleModule} from '@angular/material/core';
 import {MatTableModule} from '@angular/material/table';
 import {MatFormFieldModule} from '@angular/material/form-field';
@@ -16,6 +16,7 @@ import {MatSelectModule} from '@angular/material/select';
 import {MatSortModule} from '@angular/material/sort';
 import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
 import {MatCheckboxModule} from '@angular/material/checkbox';
+import {MatSliderModule} from '@angular/material/slider';
 
 @NgModule({
   declarations: [],
@@ -27,7 +28,7 @@ import {MatCheckboxModule} from '@angular/material/checkbox';
     MatSidenavModule,
     MatListModule,
     MatButtonModule,
-    MatButtonToggleModule,
+    //MatButtonToggleModule,
     MatIconModule,
     MatRippleModule,
     MatTableModule,
@@ -36,6 +37,7 @@ import {MatCheckboxModule} from '@angular/material/checkbox';
     MatSelectModule,
     MatSortModule,
     MatProgressSpinnerModule,
+    MatSliderModule,
     MatCheckboxModule
   ],
   exports: [
@@ -45,7 +47,7 @@ import {MatCheckboxModule} from '@angular/material/checkbox';
     MatToolbarModule,
     MatListModule,
     MatButtonModule,
-    MatButtonToggleModule,
+    //MatButtonToggleModule,
     MatIconModule,
     MatRippleModule,
     MatTableModule,
@@ -54,6 +56,7 @@ import {MatCheckboxModule} from '@angular/material/checkbox';
     MatSelectModule,
     MatSortModule,
     MatProgressSpinnerModule,
+    MatSliderModule,
     MatCheckboxModule
   ]
 })

@@ -1,3 +1,13 @@
+## v0.719.2020
+
+* Added SVG kudos to `explore` component
+* Introduced slider (and corresponding form validation) into `donate` component to help conversion of ETH to wei
+* Blocknative
+    * Integrated onclick into notify popups, linking to Etherscan for the tx
+    * Allowed `connectWallet` to retain state in localstorage and when change between components
+    * Allowed users to `changeWallet`, clearing out localstorage
+    * Added Authereum and Dapper as options
+
 ## v0.7.2020
 
 * Upgrade to Angular 10
@@ -8,11 +18,3 @@
 * Integration of Google Analytics
 * Edits to `angular.json` and `tsconfig` to suppress warnings (`allowedCommonJsDependencies`)
 
-## v0.719.2020
-
-* Added SVG kudos to `explore` component
-* Blocknative
-    * Integrated onclick into notify popups, linking to Etherscan for the tx
-    * Allowed `connectWallet` to retain state in localstorage and when change between components
-    * Allowed users to `changeWallet`, clearing out localstorage
-    * Added Authereum and Dapper as options

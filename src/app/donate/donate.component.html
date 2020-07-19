@@ -21,12 +21,9 @@
       <li>Wallet: {{walletState.wallet.name}}</li>
       <li>Mobile: {{walletState.mobileDevice}}</li>
     </ul>
-    <p *ngIf="tx"><strong>Transaction: </strong><a class="ff-link" href="https://goerli.etherscan.io/tx/{{tx.hash}}"
-        target="_blank">View on
-        Etherscan</a></p>
   </div>
   <div class="col-6" *ngIf="!walletState">
-    <h3>Detecting Wallet</h3>
+    <h3>Please Connect a Web3 Wallet</h3>
   </div>
 </div><!-- end row -->
 <div class="row">
@@ -37,48 +34,34 @@
           <mat-card-title>Make Donation</mat-card-title>
         </mat-card-header>
         <mat-card-content>
-          <mat-button-toggle-group #buttonToggle="matButtonToggleGroup">
-            <mat-button-toggle value=".01" aria-label="Small donation">
-              .01
-            </mat-button-toggle>
-            <mat-button-toggle value=".1" aria-label="Medium donation">
-              .1
-            </mat-button-toggle>
-            <mat-button-toggle value="1" aria-label="Large donation">
-              1
-            </mat-button-toggle>
-            <mat-button-toggle value="10" aria-label="Huge donation">
-              10
-            </mat-button-toggle>
-          </mat-button-toggle-group>
-          <div class="example-selected-value">Selected value: {{buttonToggle.value}}</div>
+          <mat-slider thumbLabel [disabled]="sliderDisabled" [tickInterval]="false" [(ngModel)]="sliderValue" 
+          [ngModelOptions]="{standalone: true}" tickInterval=".1" step=".1" min=".1" max="1"></mat-slider>
+          <div></div>
+
           <mat-form-field>
-            <input type="number" #donationAmount matInput id="amount" placeholder="Amount to spend (in wei)"
-              formControlName="amount" value="{{buttonToggle.value}}">
+            <input type="number" matInput value="{{this.sliderValue}}" #ethAmount placeholder="Convert ETH to Wei">
+          </mat-form-field>
+          <button mat-raised-button (click)="convertETHToWei(ethAmount.value)">Convert</button>
+
+          <mat-form-field>
+            <input type="number" #donationAmount matInput id="amount" placeholder="Amount to donate (in wei)"
+              formControlName="amount" value="{{this.valueInWei}}">
             <mat-error *ngIf="donationForm.invalid">{{formErrorMsg('amount')}}</mat-error>
           </mat-form-field>
           <button mat-raised-button class="ff-red-button" (click)="donate(donationAmount.value)"
             [disabled]="!donationForm.valid || !walletState">Donate</button>
           <section class="checkbox-section">
-            <mat-checkbox #checkBox formControlName="checkBox">Acknowledge <a href="https://fuguefoundation.org/legal#terms" target="_blank" class="ff-link">Terms of Service</a></mat-checkbox>
+            <mat-checkbox #checkBox formControlName="checkBox">Acknowledge <a
+                href="https://fuguefoundation.org/legal#terms" target="_blank" class="ff-link">Terms of Service</a>
+            </mat-checkbox>
           </section>
         </mat-card-content>
       </mat-card>
     </form>
   </div>
   <div class="col-6">
-    <mat-card>
-      <mat-card-header>
-        <mat-card-title>Convert ETH to Wei</mat-card-title>
-      </mat-card-header>
-      <mat-card-content>
-        <mat-form-field>
-          <input type="number" matInput #ethAmount placeholder="Amount (in ETH)">
-        </mat-form-field>
-        <button mat-raised-button (click)="convertETHToWei(ethAmount.value)">Convert</button>
-        {{valueInWei}}
-      </mat-card-content>
-    </mat-card>
+    <p *ngIf="tx"><strong>Transaction: </strong><a class="ff-link" href="https://goerli.etherscan.io/tx/{{tx.hash}}"
+        target="_blank">View on Etherscan</a></p>
   </div>
 </div>
 <!--end row-->

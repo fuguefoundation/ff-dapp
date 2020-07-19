@@ -34,3 +34,8 @@ aside.bn-onboard-modal{
 .mat-progress-spinner circle, .mat-spinner circle {
     stroke: #b31121 !important;
 }
+.mat-accent .mat-slider-track-fill,
+.mat-accent .mat-slider-thumb,
+.mat-accent .mat-slider-thumb-label {
+  background-color: #b31121;
+}

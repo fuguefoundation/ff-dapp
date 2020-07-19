@@ -5,14 +5,20 @@ label {
   color: #607D8B;
   font-weight: bold;
 }
+
 input {
   height: 2em;
   font-size: 1em;
   padding-left: .4em;
 }
+
 .checkbox-section {
-    display: flex;
-    align-content: center;
-    align-items: center;
-    height: 60px;
+  display: flex;
+  align-content: center;
+  align-items: center;
+  height: 60px;
+}
+
+mat-slider {
+  width: 300px;
 }

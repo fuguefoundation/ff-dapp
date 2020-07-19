@@ -25,6 +25,9 @@ export class DonateComponent implements OnInit {
   NFT: any;
   evaluator: Evaluator;
   private paramsId: string;
+  public sliderValue: number;
+  public sliderDisabled: boolean = true;
+  public walletDisabled: boolean = true;
   public orgs: Org[];
   public walletState: WalletState;
   public tx: Transaction;
@@ -80,8 +83,14 @@ export class DonateComponent implements OnInit {
   }
 
   connectWallet(change: boolean): void {
-    console.log(change);
-    this.web3Service.blockNativeOnboard(change);
+    const result = this.web3Service.blockNativeOnboard(change);
+    if (result){
+        this.sliderDisabled = false;
+        this.walletDisabled = false;
+    } else {
+        this.walletDisabled = true;
+        console.log('could not connect wallet');
+    }
   }
 
   donate(amount): void {
@@ -96,8 +105,10 @@ export class DonateComponent implements OnInit {
     this.web3Service.donate(donation);
   }
 
-  convertETHToWei(value) {
-    this.valueInWei = this.web3Service.convertETHToWei(value)
+  convertETHToWei(amount) {
+    this.valueInWei = this.web3Service.convertETHToWei(amount);
+    this.donationForm.controls['amount'].clearValidators();
+    this.donationForm.controls['amount'].updateValueAndValidity({onlySelf:true});
   }
 
   goBack(): void {
