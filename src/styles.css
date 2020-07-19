@@ -23,3 +23,14 @@ aside.bn-onboard-modal{
 .mat-checkbox-checked.mat-accent .mat-checkbox-background {
     background-color: #b31121;
 }
+.ff-body {
+    font-size: 1.3em;
+    margin-bottom: 2%;
+}
+.ff-body a {
+    color: #b31121;
+    text-decoration: none;
+}
+.mat-progress-spinner circle, .mat-spinner circle {
+    stroke: #b31121 !important;
+}

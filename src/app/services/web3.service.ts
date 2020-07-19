@@ -8,9 +8,12 @@ import Notify from 'bnc-notify';
 import Onboard from 'bnc-onboard'
 import { environment } from 'src/environments/environment';
 import { WalletState } from '../models/walletState';
-import { Transaction } from '../models/tx';
+//import { Transaction } from '../models/tx';
 
-//declare let window: any;
+const networkIdToUrl = {
+    '1': 'https://etherscan.io/tx',
+    '5': 'https://goerli.etherscan.io/tx'
+}
 
 @Injectable()
 export class Web3Service {
@@ -27,6 +30,7 @@ export class Web3Service {
     subscriptions: {
         wallet: wallet => {
             this.web3 = new Web3(wallet.provider)
+            window.localStorage.setItem('ff-dapp-wallet', wallet.name)
         },
         balance: () => {}
     },
@@ -34,7 +38,9 @@ export class Web3Service {
         heading: "Donation Prep",
         wallets: [
             { walletName: 'metamask' },
-            { walletName: 'opera' }
+            { walletName: 'authereum' },
+            { walletName: 'opera' },
+            { walletName: "dapper"}
         ]
     },
     walletCheck: [
@@ -44,9 +50,7 @@ export class Web3Service {
     ]
   }
 
-  constructor(private debugService: DebugService) {
-    this.blockNativeOnboard();
-  }
+  constructor(private debugService: DebugService) {}
 
 //   public async artifactsToContract(artifacts) {
 //     if (!this.web3) {
@@ -61,11 +65,21 @@ export class Web3Service {
 //     return contractAbstraction;
 //   }
 
-  public async blockNativeOnboard() {
-    this.onboard = Onboard(this.initializationOptions);
+  public async blockNativeOnboard(change: boolean) {
+    if(change){
+        window.localStorage.removeItem('ff-dapp-wallet');
+    }
+    if (this.onboard == undefined) {
+        this.onboard = Onboard(this.initializationOptions);
+    }
     let walletSelected: boolean, readyToTransact: boolean;
+    const previouslySelectedWallet = window.localStorage.getItem('ff-dapp-wallet')
     try {
-        walletSelected = await this.onboard.walletSelect();
+        if (previouslySelectedWallet != null) {
+            walletSelected = await this.onboard.walletSelect(previouslySelectedWallet);
+        } else {
+            walletSelected = await this.onboard.walletSelect();
+        }
     } catch (error) {
         console.log(error);
     }
@@ -87,12 +101,15 @@ export class Web3Service {
             networkId: 5
         });
         const { emitter } = notifyInstance.hash(hash);
-        emitter.on('txConfirmed', function(tx) {
+        emitter.on('all', function(tx) {
             self.tx$.next(tx);
             setTimeout(() => {
                 self.currentWalletState$.next(self.onboard.getState())}, 
                 8000
             );
+            return {
+                onclick: () => window.open(`${networkIdToUrl[self.initializationOptions.networkId]}/${tx.hash}`)
+            }          
         });
       })
   }

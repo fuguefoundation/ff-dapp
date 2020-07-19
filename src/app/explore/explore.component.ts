@@ -18,6 +18,7 @@ export class ExploreComponent implements OnInit {
   txRegex: string = "0x[a-z]{64}";
   eventForm: FormGroup;
   nftForm: FormGroup;
+  kudosForm: FormGroup;
 
   constructor(private ess: EtherscanService, private fb: FormBuilder) {}
 
@@ -34,6 +35,9 @@ export class ExploreComponent implements OnInit {
     });
     this.nftForm = this.fb.group({
         hash: ['', [Validators.required]]
+      });
+    this.kudosForm = this.fb.group({
+        kudos: ['', [Validators.required]]
       });
   }
 

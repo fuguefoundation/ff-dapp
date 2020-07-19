@@ -79,6 +79,11 @@ export class DonateComponent implements OnInit {
     });
   }
 
+  connectWallet(change: boolean): void {
+    console.log(change);
+    this.web3Service.blockNativeOnboard(change);
+  }
+
   donate(amount): void {
     let evaluatorData: Array < string > = this.donateService.getEvaluatorData();
     let data = this.web3Service.getHexValue(evaluatorData.indexOf(this.paramsId));

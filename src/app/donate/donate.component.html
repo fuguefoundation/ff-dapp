@@ -1,6 +1,9 @@
 <button mat-raised-button (click)="goBack()">
   <mat-icon>navigate_before</mat-icon>Back
 </button>
+<button mat-raised-button class="ff-red-button" (click)="connectWallet(false)">Connect Wallet</button>
+<button mat-raised-button class="ff-red-button" (click)="connectWallet(true)">Change Wallet</button>
+
 <br>
 <div class="row">
   <div class="col-6" *ngIf="orgs">
