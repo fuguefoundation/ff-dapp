@@ -46,6 +46,8 @@ testem.log
 package-lock.json
 /src/environments/environment.prod.ts
 /src/environments/environment.ts
+/src/assets/data/evaluators.json
+/src/assets/data/nonprofits.json
 
 # System Files
 .DS_Store

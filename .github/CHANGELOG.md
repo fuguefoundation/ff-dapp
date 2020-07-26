@@ -1,3 +1,8 @@
+## v0.725.2020
+* Added caching to API calls using `HTTP_INTERCEPTORS` | [reference](https://blog.fullstacktraining.com/caching-http-requests-with-angular/)
+* Added LeaderBoard in `explore` component, pulls top donor and recipient values from Etherscan events
+* Close sidenav with first onclick, added icons
+
 ## v0.719.2020
 
 * Added SVG kudos to `explore` component

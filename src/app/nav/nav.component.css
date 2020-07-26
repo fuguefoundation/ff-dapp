@@ -31,11 +31,15 @@ h1.example-app-name {
 }
 
 .fugue-red {
-    color: #b31121;
+  color: #b31121;
 }
 
 .example-icon {
   padding: 0 14px;
+}
+
+.snav-icon {
+  margin-right: 3px;
 }
 
 .example-spacer {
@@ -43,12 +47,14 @@ h1.example-app-name {
 }
 
 mat-sidenav-content {
-    padding: 1%;
+  padding: 1%;
 }
+
 .mat-toolbar.mat-primary {
-    background: #b31121;
-    color: #fff;
+  background: #b31121;
+  color: #fff;
 }
+
 .active-link {
-    color:#b31121;
+  color: #b31121;
 }

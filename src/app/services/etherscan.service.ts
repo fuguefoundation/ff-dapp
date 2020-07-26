@@ -30,11 +30,13 @@ export class EtherscanService {
     );
   }
 
+  leaderBoard() {
+
+  }
+
   getEvents(): Observable < Event[] > {
     return of(EVENTSDATA);
   }
-
-  "0x000000000000000000000000000000000000000000000000000000000000000600000000000000000000000000000000000000000000000006f05b59d3b20000000000000000000000000000000000000000000000000000000000000000006000000000000000000000000000000000000000000000000000000000000000010200000000000000000000000000000000000000000000000000000000000000"
 
   processDonationReceived(data): Array < EventResponse > {
     console.log(data);
@@ -42,10 +44,10 @@ export class EtherscanService {
     for (var i = 0; i < data.result.length; i++) {
       var obj: EventResponse = new EventResponse();
       obj["tx"] = this.txUrl + data.result[i].transactionHash
-      obj["donationID"] = data.result[i].data.substring(60, 66);
+      obj["donationID"] = this.web3.utils.hexToNumberString('0x' + data.result[i].data.substring(60, 66));
       obj["donor"] = '0x' + data.result[i].topics[1].substring(26, 66);
-      obj["amount"] = this.web3.utils.fromWei(this.web3.utils.hexToNumberString('0x' + data.result[i].data.substring(115, 130)));
-      obj["evaluatorID"] = this.web3.utils.hexToNumberString('0x' + data.result[i].data.substring(194, 258));
+      obj["amount"] = Number(this.web3.utils.fromWei(this.web3.utils.hexToNumberString('0x' + data.result[i].data.substring(115, 130))));
+      obj["evaluatorID"] = this.web3.utils.hexToNumberString('0x' + data.result[i].data.substring(258, 260));
       obj["timestamp"] = this.timeConverter(this.web3.utils.toDecimal(data.result[i].timeStamp));
       logArray.push(obj);
     }
@@ -53,12 +55,13 @@ export class EtherscanService {
   }
 
   processPaymentDistributed(data): Array < EventResponse > {
+    console.log(data);
     var logArray: EventResponse[] = [];
     for (var i = 0; i < data.result.length; i++) {
       var obj: EventResponse = new EventResponse();
       obj["tx"] = this.txUrl + data.result[i].transactionHash
       obj["to"] = '0x' + data.result[i].data.substring(26, 66);
-      obj["amount"] = this.web3.utils.fromWei(this.web3.utils.hexToNumberString('0x' + data.result[i].data.substring(115, 130)));
+      obj["amount"] = Number(this.web3.utils.fromWei(this.web3.utils.hexToNumberString('0x' + data.result[i].data.substring(115, 130))));
       obj["evaluatorID"] = data.result[i].data.substring(193, 194);
       obj["timestamp"] = this.timeConverter(this.web3.utils.toDecimal(data.result[i].timeStamp));
       logArray.push(obj);

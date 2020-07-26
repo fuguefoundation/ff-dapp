@@ -8,7 +8,12 @@
         </mat-card-header>
         <mat-card-content>
           <p>
-              What is a <a href="https://gitcoin.co/kudos" target="_blank">Kudos</a>? Well, it's a way of showing your appreciation for another Gitcoin member. It's a commemorative, digital asset connected to a <a href="https://eips.ethereum.org/EIPS/eip-721" target="_blank">non-fungible token</a> on the Ethereum blockchain, a type of virtual souvenir. To receive the Fugue Foundation Kudos, you need to first complete the <a href="http://" target="_blank">Effective Altruism Quest</a>, a fun, gamified way to learn about the web3 ecosystem, compete with your friends, and earn rewards!
+            What is a <a href="https://gitcoin.co/kudos" target="_blank">Kudos</a>? Well, it's a way of showing your
+            appreciation for another Gitcoin member. It's a commemorative, digital asset connected to a <a
+              href="https://eips.ethereum.org/EIPS/eip-721" target="_blank">non-fungible token</a> on the Ethereum
+            blockchain, a type of virtual souvenir. To receive the Fugue Foundation Kudos, you need to first complete
+            the <a href="https://gitcoin.co/quests/376/effective-altruism" target="_blank">Effective Altruism Quest</a>, a fun, gamified way to learn about the
+            web3 ecosystem, compete with your friends, and earn rewards!
           </p>
         </mat-card-content>
       </mat-card>
@@ -16,6 +21,41 @@
   </div>
   <div class="col-6">
     <img id="kudosImg" src="./assets/images/kudos.svg" alt="FF Kudos" />
+  </div>
+</div>
+<!--end row-->
+
+<!-- LeaderBoard -->
+<div class="row ff-body">
+  <div class="col-6">
+    <mat-card>
+      <mat-card-header>
+        <mat-card-title>Leader Board</mat-card-title>
+      </mat-card-header>
+      <mat-card-content>
+        <div>
+          <h3>Top Donors</h3>
+          <ul *ngFor="let a of lb.donor; let i = index">
+            <li>{{lb.donor[i]}}: {{lb.donorAmount[i]}} ETH</li>
+          </ul>
+        </div>
+      </mat-card-content>
+    </mat-card>
+  </div>
+  <div class="col-6">
+    <mat-card>
+      <mat-card-header>
+        <mat-card-title>Leader Board</mat-card-title>
+      </mat-card-header>
+      <mat-card-content>
+        <div>
+          <h3>Top Recipients</h3>
+          <ul *ngFor="let b of lb.nonprofit; let i = index">
+            <li>{{lb.nonprofit[i]}}: {{lb.nonprofitAmount[i]}} ETH</li>
+          </ul>
+        </div>
+      </mat-card-content>
+    </mat-card>
   </div>
 </div>
 <!--end row-->

@@ -1,7 +1,7 @@
 export class EventResponse {
 	tx: string;
 	to: string;
-	amount: string;
+	amount: number;
 	evaluatorID: string;
     timestamp: string;
     donationID: string;

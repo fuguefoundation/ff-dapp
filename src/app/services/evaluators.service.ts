@@ -5,7 +5,6 @@ import { Observable, of } from 'rxjs';
 import { catchError, map, tap } from 'rxjs/operators';
 
 import { environment } from 'src/environments/environment';
-//import { Evaluators } from '../models/evaluators';
 import { Evaluator } from '../models/evaluator';
 import { DebugService } from './debug.service';
 

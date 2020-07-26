@@ -2,13 +2,17 @@ import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
+
+//Uncomment for local development without live server/API
 // import { HttpClientInMemoryWebApiModule } from 'angular-in-memory-web-api';
 // import { InMemoryDataService }  from './services/in-memory-data.service';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppMaterialModule } from './app-material.module';
 import { UtilsModule } from './services/utils.module';
+import { RequestCache } from './services/caching-request.service';
+import { CachingInterceptor } from './services/caching-interceptor.service';
 
 import { AppComponent } from './app.component';
 import { OrgsComponent } from './orgs/orgs.component';
@@ -56,7 +60,9 @@ import { ExploreComponent } from './explore/explore.component';
     PageNotFoundComponent,
     ExploreComponent
   ],
-  providers: [],
+  providers: [RequestCache,
+    { provide: HTTP_INTERCEPTORS, useClass: CachingInterceptor, multi: true }
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
