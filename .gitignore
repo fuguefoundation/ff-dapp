@@ -48,6 +48,7 @@ package-lock.json
 /src/environments/environment.ts
 /src/assets/data/evaluators.json
 /src/assets/data/nonprofits.json
+/src/assets/data/elections.json
 
 # System Files
 .DS_Store

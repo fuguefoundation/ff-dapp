@@ -1,0 +1,57 @@
+[
+    {
+        "id": "newVoterRequest",
+        "desc": "Request for the admin to register address as an eligible voter. This is a helper function that emits an event to alert the admin of the requesting voter's address.",
+        "call": "Public"
+    },
+    {
+        "id": "getElectionInfo",
+        "desc": "Returns names of and current vote counts for each proposal given an election ID. Use this research what to vote on.",
+        "call": "Read Only"
+    },
+    {
+        "id": "getVoterInfo",
+        "desc": "Returns state of a voter relative to a given election. `Weight` is how much a voter's vote is worth. `Voted`, `Registered`, and `Changed Vote` show whether these conditions are true or false. `Delegate` lists the address to which a voter may have delegated. `Vote` is the proposal for which s/he voted, either 0 or 1.",
+        "call": "Read Only"
+    },
+    {
+        "id": "newElection",
+        "desc": "Admin creates a new election with two competing proposals or candidates (provided as strings) with a fixed deadline (a UNIX timestamp measured against `block.timestamp`).",
+        "call": "Only admin"
+    },
+    {
+        "id": "registerToVote",
+        "desc": "Admin registers an address to be eligible to vote within this dApp by assigning the `VOTER` role. Voters can then use `registerForElection` to register for each specific election they want to vote in.",
+        "call": "Only admin"
+    },
+    {
+        "id": "registerForElection",
+        "desc": "Register to vote in a specific election by ID. You need to register for each election you wish to participate in.",
+        "call": "Registered Voter"
+    },
+    {
+        "id": "vote",
+        "desc": "Vote in an election providing a proposal number and an election ID. Proposal number is either 0 or 1. The weight of your vote is worth 1 unless another voter has delegated to your address.",
+        "call": "Registered Voter"
+    },
+    {
+        "id": "delegate",
+        "desc": "Delegate your vote to another registered voter by adding your vote weight to theirs. The electoral system is designed to not allow you to un-delegate, and the delegate voter is able to change their vote.",
+        "call": "Registered Voter"
+    },
+    {
+        "id": "changeVote",
+        "desc": "A voter may change their vote one time to the proposal number opposite from what they already voted.",
+        "call": "Registered Voter"
+    },
+    {
+        "id": "getElectionWinner",
+        "desc": "Reads the winning proposal name for a given election. This function is read only, but will fail unless the `block.timestamp` is greater than the deadline of the election.",
+        "call": "Read Only"
+    },
+    {
+        "id": "revokeVoter",
+        "desc": "Admin may revoke an address with the VOTER role, prohibiting them from participating in any further elections.",
+        "call": "Admin Only"
+    }
+]

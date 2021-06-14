@@ -26,6 +26,7 @@ import { DataComponent } from './data/data.component';
 import { NavComponent } from './nav/nav.component';
 import { DonateComponent } from './donate/donate.component';
 import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
+import { VoteComponent } from './vote/vote.component';
 import { ExploreComponent } from './explore/explore.component';
 
 @NgModule({
@@ -58,7 +59,8 @@ import { ExploreComponent } from './explore/explore.component';
     NavComponent,
     DonateComponent,
     PageNotFoundComponent,
-    ExploreComponent
+    ExploreComponent,
+    VoteComponent
   ],
   providers: [RequestCache,
     { provide: HTTP_INTERCEPTORS, useClass: CachingInterceptor, multi: true }

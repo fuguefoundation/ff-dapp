@@ -12,7 +12,8 @@
             appreciation for another Gitcoin member. It's a commemorative, digital asset connected to a <a
               href="https://eips.ethereum.org/EIPS/eip-721" target="_blank">non-fungible token</a> on the Ethereum
             blockchain, a type of virtual souvenir. To receive the Fugue Foundation Kudos, you need to first complete
-            the <a href="https://gitcoin.co/quests/376/effective-altruism" target="_blank">Effective Altruism Quest</a>, a fun, gamified way to learn about the
+            the <a href="https://gitcoin.co/quests/376/effective-altruism" target="_blank">Effective Altruism Quest</a>,
+            a fun, gamified way to learn about the
             web3 ecosystem, compete with your friends, and earn rewards!
           </p>
         </mat-card-content>
@@ -59,7 +60,7 @@
   </div>
 </div>
 <!--end row-->
-
+<!-- DONATION Form-->
 <div class="row">
   <div class="col-6">
     <form [formGroup]="eventForm">
@@ -129,3 +130,58 @@
   </div>
 </div>
 <!--end row-->
+<!-- VOTE Form-->
+<div class="row">
+  <div class="col-6">
+    <form [formGroup]="eventVoteForm">
+      <mat-card>
+        <mat-card-header>
+          <mat-card-title>Election and Voter Audit</mat-card-title>
+          <mat-card-subtitle>{{eventVoteDesc}}</mat-card-subtitle>
+        </mat-card-header>
+        <mat-card-content>
+          <mat-form-field>
+            <mat-label>Events</mat-label>
+            <mat-select #eventVoteSelected formControlName="eventVoteName" (selectionChange)="updateVoteDesc($event.value)">
+              <mat-option *ngFor="let e of eventVotes; index as i;" value={{i}}>{{e.name}}</mat-option>
+            </mat-select>
+          </mat-form-field>
+          <mat-card-actions>
+            <button mat-raised-button class="ff-red-button" [disabled]="!eventVoteForm.valid"
+              (click)="onEventVoteSelected(eventVoteSelected.value)">Select</button>
+          </mat-card-actions>
+        </mat-card-content>
+      </mat-card>
+    </form>
+  </div><!-- end col-->
+  <div class="col-6">
+    <div *ngFor="let e of eventVotesData; index as i;">
+      <ul *ngIf="eventVotesData">
+        <li><a class="ff-link" href="{{e.tx}}" target="_blank">Transaction</a></li>
+        <li>{{e.timestamp}}</li>
+        <li *ngIf="e.date">Election deadline: {{e.date}}</li>
+        <li *ngIf="e.electionID">Election ID: {{e.electionID}}</li>
+        <li *ngIf="e.registeredAddr">Address: <a class="ff-link"
+            href="https://ropsten.etherscan.io/address/{{e.registeredAddr}}" target="_blank">{{e.registeredAddr}}</a>
+        </li>
+        <li *ngIf="e.voter">Voter: {{e.voter}}</li>
+        <li *ngIf="e.admin">Admin: {{e.admin}}</li>
+        <li *ngIf="e.newVoterRequest">Request address: {{e.newVoterRequest}}</li>
+        <li *ngIf="e.tokenID">NFT ID: {{e.tokenID}}</li>
+        <li *ngIf="e.NFTissuedTo">Issued to: {{e.NFTissuedTo}}</li>
+        <li *ngIf="e.addrVote">Voter: {{e.addrVote}}</li>
+        <li *ngIf="e.vote">Proposal: {{e.vote}}</li>
+        <li *ngIf="e.voteElectionID">Election ID: {{e.voteElectionID}}</li>
+        <li *ngIf="e.addrChangedVote">Voter: {{e.addrChangedVote}}</li>
+        <li *ngIf="e.changeVoteElectionID">Election ID: {{e.changeVoteElectionID}}</li>
+        <li *ngIf="e.delegateFromAddr">Voter: {{e.delegateFromAddr}}</li>
+        <li *ngIf="e.delegateToAddr">Delegate: {{e.delegateToAddr}}</li>
+        <li *ngIf="e.delegateElectionID">Election ID: {{e.delegateElectionID}}</li>
+        <li *ngIf="e.voteChanged">Proposal Changed To: {{e.voteChanged}}</li>
+        <li *ngIf="e.voterRegisterAddr">Voter: {{e.voterRegisterAddr}}</li>
+        <li *ngIf="e.voterRegisterElection">Election ID: {{e.voterRegisterElection}}</li>
+      </ul>
+      <hr>
+    </div>
+  </div><!-- end col-->
+</div><!--end row-->

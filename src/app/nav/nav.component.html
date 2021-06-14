@@ -23,6 +23,9 @@
         <a mat-list-item href="https://fuguefoundation.org/dev/impact" target="_blank">
           <mat-icon class="snav-icon">flash_on</mat-icon> Impact
         </a>
+        <a mat-list-item routerLinkActive="active-link" routerLink="/vote" (click)="snav.close()">
+            <mat-icon class="snav-icon">done_outline</mat-icon> Vote
+          </a>
         <a mat-list-item routerLinkActive="active-link" routerLink="/explore" (click)="snav.close()">
           <mat-icon class="snav-icon">explore</mat-icon> Explore
         </a>

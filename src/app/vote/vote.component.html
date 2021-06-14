@@ -1,0 +1,324 @@
+<button *ngIf="!walletState" mat-raised-button class="ff-red-button" (click)="connectWallet(false)">Connect
+  Wallet</button>
+<button *ngIf="walletState" mat-raised-button class="ff-red-button" (click)="connectWallet(true)">Change Wallet</button>
+
+<br>
+<div *ngIf="walletState">
+  <div class="row">
+    <div class="col-6">
+      <h3>Wallet State</h3>
+      <ul>
+        <li>Address: <a class="ff-link" href="https://ropsten.etherscan.io/address/{{walletState.address}}"
+            target="_blank">{{walletState.address}}</a></li>
+        <li>Network: {{networkName}}</li>
+        <li>Balance: {{balanceETH}} ETH</li>
+        <li>Wallet: {{walletState.wallet.name}}</li>
+        <li>Mobile: {{walletState.mobileDevice}}</li>
+        <li>Contract: <a class="ff-link" href="https://ropsten.etherscan.io/address/{{elecContract.address}}"
+            target="_blank">{{elecContract.address}}</a></li>
+      </ul>
+    </div>
+    <div class="col-6">
+      <mat-card class="canCall">
+        <mat-card-header>
+          <button mat-card-avatar mat-icon-button (click)="openDialog('newVoterRequest')">
+            <mat-icon class="iconMargin">info</mat-icon>
+          </button>
+          <mat-card-title>New Voter Request</mat-card-title>
+        </mat-card-header>
+        <mat-card-content>
+          <button mat-raised-button id="newVoterRequest" (click)="newVoterRequest(walletState.address)">Request</button>
+        </mat-card-content>
+      </mat-card>
+      <div *ngIf="tx">
+        <h3>Transactions</h3>
+        <p><a class="ff-link" href="https://ropsten.etherscan.io/tx/{{tx.hash}}" target="_blank">View on Etherscan</a>
+        </p>
+      </div>
+    </div>
+  </div><!-- end row -->
+
+  <div class="row">
+    <div class="col-6">
+      <mat-card class="readOnly">
+        <mat-card-header>
+          <button mat-card-avatar mat-icon-button (click)="openDialog('getElectionInfo')">
+            <mat-icon class="iconMargin">info</mat-icon>
+          </button>
+          <mat-card-title>Get Election Information</mat-card-title>
+        </mat-card-header>
+        <mat-card-content>
+          <mat-form-field>
+            <input type="number" matInput #eIDelectionInfo placeholder="Election ID">
+          </mat-form-field>
+          <button mat-raised-button id="getElectionInfoButton"
+            (click)="getElectionInfo(eIDelectionInfo.value)">Get</button>
+        </mat-card-content>
+      </mat-card>
+    </div>
+    <div class="col-6">
+      <ul *ngIf="election.show">
+        <li>Proposal 0: <span class="ff-link">{{election.proposal0}}</span> | Vote count: <span
+            class="ff-link">{{election.proposal0Count}}</span></li>
+        <li>Proposal 1: <span class="ff-link">{{election.proposal1}}</span> | Vote count: <span
+            class="ff-link">{{election.proposal1Count}}</span></li>
+        <li>Deadline: <span>{{election.getDate}}</span></li>
+      </ul>
+    </div>
+  </div> <!-- end row -->
+
+  <div class="row">
+    <div class="col-6">
+      <mat-card class="readOnly">
+        <mat-card-header>
+          <button mat-card-avatar mat-icon-button (click)="openDialog('getVoterInfo')">
+            <mat-icon class="iconMargin">info</mat-icon>
+          </button>
+          <mat-card-title>Get Voter Information</mat-card-title>
+          <mat-card-subtitle>My address is {{walletState.address}}</mat-card-subtitle>
+        </mat-card-header>
+        <mat-card-content>
+          <mat-form-field>
+            <input type="number" matInput #eIDvoterInfo placeholder="Election ID">
+          </mat-form-field>
+          <mat-form-field>
+            <input type="text" matInput #vAddrVoterInfo placeholder="Voter Address">
+          </mat-form-field>
+          <button mat-raised-button id="getVoterInfoButton"
+            (click)="getVoterInfo(eIDvoterInfo.value, vAddrVoterInfo.value)">Get</button>
+        </mat-card-content>
+      </mat-card>
+    </div>
+    <div class="col-6">
+      <ul *ngIf="voter.show">
+        <li>Weight: {{voter.weight}}</li>
+        <li>Voted: {{voter.voted}}</li>
+        <li>Registered: {{voter.registered}}</li>
+        <li>Changed Vote: {{voter.hasChangedVote}}</li>
+        <li>Delegate: {{voter.delegate}}</li>
+        <li>Vote: <span *ngIf="voter.voted && voter.delegate == '0x0000000000000000000000000000000000000000'">{{voter.vote}}</span></li>
+      </ul>
+    </div>
+  </div> <!-- end row -->
+
+  <div class="row">
+    <div class="col-6">
+      <form [formGroup]="newElectionForm">
+        <mat-card class="adminOnly">
+          <mat-card-header>
+            <button mat-card-avatar mat-icon-button (click)="openDialog('newElection')">
+              <mat-icon class="iconMargin">info</mat-icon>
+            </button>
+            <mat-card-title>New Election</mat-card-title>
+            <mat-card-subtitle><em>Only admin can call</em></mat-card-subtitle>
+            <mat-card-subtitle *ngIf="election.date"><em>{{election.prop0}} vs. {{election.prop1}} by
+                {{election.date}}</em></mat-card-subtitle>
+          </mat-card-header>
+          <mat-card-content>
+            <mat-form-field>
+              <input matInput type="text" id="prop0" placeholder="Proposal Zero" (change)="setProp0($event)"
+                formControlName="prop0">
+              <mat-error *ngIf="newElectionForm.invalid">{{newElectionErrorMsg('prop0')}}</mat-error>
+            </mat-form-field>
+            <mat-form-field>
+              <input matInput type="text" id="prop1" placeholder="Proposal One" (change)="setProp1($event)"
+                formControlName="prop1">
+              <mat-error *ngIf="newElectionForm.invalid">{{newElectionErrorMsg('prop1')}}</mat-error>
+            </mat-form-field>
+            <mat-form-field>
+              <input matInput type="number" id="deadline" placeholder="Deadline" (change)="setDeadline($event)"
+                formControlName="deadline">
+              <mat-error *ngIf="newElectionForm.invalid">{{newElectionErrorMsg('deadline')}}</mat-error>
+            </mat-form-field>
+            <button mat-raised-button id="newElection" (click)="newElection()"
+              [disabled]="!newElectionForm.valid">Create</button>
+          </mat-card-content>
+        </mat-card>
+      </form>
+    </div>
+    <div class="col-6">
+      <form [formGroup]="registerToVoteForm">
+        <mat-card class="adminOnly">
+          <mat-card-header>
+            <button mat-card-avatar mat-icon-button (click)="openDialog('registerToVote')">
+              <mat-icon class="iconMargin">info</mat-icon>
+            </button>
+            <mat-card-title>Register to Vote</mat-card-title>
+            <mat-card-subtitle><em>Only admin can call</em></mat-card-subtitle>
+          </mat-card-header>
+          <mat-card-content>
+            <mat-form-field>
+              <input matInput type="text" id="registerAddr" placeholder="Address" (change)="setRegisterAddr($event)"
+                formControlName="addr">
+              <mat-error *ngIf="registerToVoteForm.invalid">{{registerToVoteErrorMsg('addr')}}</mat-error>
+            </mat-form-field>
+            <button mat-raised-button id="registerToVote" (click)="registerToVote()"
+              [disabled]="!registerToVoteForm.valid">Register</button>
+          </mat-card-content>
+        </mat-card>
+      </form>
+    </div>
+  </div> <!-- end row -->
+
+  <div class="row">
+    <div class="col-6">
+      <form [formGroup]="registerForElectionForm">
+        <mat-card class="canCall">
+          <mat-card-header>
+            <button mat-card-avatar mat-icon-button (click)="openDialog('registerForElection')">
+              <mat-icon class="iconMargin">info</mat-icon>
+            </button>
+            <mat-card-title>Register for an Election</mat-card-title>
+          </mat-card-header>
+          <mat-card-content>
+            <mat-form-field>
+              <input matInput type="number" id="registerElecID" placeholder="Election ID"
+                (change)="setRegisterElecID($event)" formControlName="eid">
+              <mat-error *ngIf="registerForElectionForm.invalid">{{registerForElectionErrorMsg('eid')}}</mat-error>
+            </mat-form-field>
+            <button mat-raised-button id="registerForElection" (click)="registerForElection()"
+              [disabled]="!registerForElectionForm.valid">Register</button>
+          </mat-card-content>
+        </mat-card>
+      </form>
+    </div>
+    <div class="col-6">
+      <form [formGroup]="voteForm">
+        <mat-card class="canCall">
+          <mat-card-header>
+            <button mat-card-avatar mat-icon-button (click)="openDialog('vote')">
+              <mat-icon class="iconMargin">info</mat-icon>
+            </button>
+            <mat-card-title>Vote</mat-card-title>
+          </mat-card-header>
+          <mat-card-content>
+            <mat-form-field>
+              <input matInput type="number" id="prop" placeholder="Proposal" (change)="setVoteProposal($event)"
+                formControlName="prop">
+              <mat-error *ngIf="voteForm.invalid">{{voteErrorMsg('prop')}}</mat-error>
+            </mat-form-field>
+            <mat-form-field>
+              <input matInput type="number" id="voteElectionID" placeholder="Election ID"
+                (change)="setVoteElectionID($event)" formControlName="eid">
+              <mat-error *ngIf="voteForm.invalid">{{voteErrorMsg('eid')}}</mat-error>
+            </mat-form-field>
+            <button mat-raised-button id="voteButton" (click)="vote()" [disabled]="!voteForm.valid">Vote</button>
+          </mat-card-content>
+        </mat-card>
+      </form>
+    </div>
+  </div> <!-- end row -->
+
+  <div class="row">
+    <div class="col-6">
+      <form [formGroup]="delegateForm">
+        <mat-card class="canCall">
+          <mat-card-header>
+            <button mat-card-avatar mat-icon-button (click)="openDialog('delegate')">
+              <mat-icon class="iconMargin">info</mat-icon>
+            </button>
+            <mat-card-title>Delegate</mat-card-title>
+          </mat-card-header>
+          <mat-card-content>
+            <mat-form-field>
+              <input matInput type="text" id="delegateAddr" placeholder="Address" (change)="setDelegateAddr($event)"
+                formControlName="delegateAddr">
+              <mat-error *ngIf="delegateForm.invalid">{{delegateErrorMsg('delegateAddr')}}</mat-error>
+            </mat-form-field>
+            <mat-form-field>
+              <input matInput type="number" id="delegateElectionID" placeholder="Election ID"
+                (change)="setDelegateElectionID($event)" formControlName="delegateEID">
+              <mat-error *ngIf="delegateForm.invalid">{{delegateErrorMsg('delegateEID')}}</mat-error>
+            </mat-form-field>
+            <button mat-raised-button id="delegateButton" (click)="delegate()"
+              [disabled]="!delegateForm.valid">Delegate</button>
+          </mat-card-content>
+        </mat-card>
+      </form>
+    </div>
+    <div class="col-6">
+      <form [formGroup]="changeVoteForm">
+        <mat-card class="canCall">
+          <mat-card-header>
+            <button mat-card-avatar mat-icon-button (click)="openDialog('changeVote')">
+              <mat-icon class="iconMargin">info</mat-icon>
+            </button>
+            <mat-card-title>Change Vote</mat-card-title>
+          </mat-card-header>
+          <mat-card-content>
+            <mat-form-field>
+              <input matInput type="number" id="changeVoteProp" placeholder="Proposal"
+                (change)="setChangeVoteProposal($event)" formControlName="changeVoteProp">
+              <mat-error *ngIf="changeVoteForm.invalid">{{changeVoteErrorMsg('changeVoteProp')}}</mat-error>
+            </mat-form-field>
+            <mat-form-field>
+              <input matInput type="number" id="changeVoteElectionID" placeholder="Election ID"
+                (change)="setChangeVoteElectionID($event)" formControlName="changeVoteEID">
+              <mat-error *ngIf="changeVoteForm.invalid">{{changeVoteErrorMsg('changeVoteEID')}}</mat-error>
+            </mat-form-field>
+            <button mat-raised-button id="changeVoteButton" (click)="changeVote()"
+              [disabled]="!changeVoteForm.valid">Change</button>
+          </mat-card-content>
+        </mat-card>
+      </form>
+    </div>
+  </div> <!-- end row -->
+
+  <div class="row">
+    <div class="col-6">
+      <mat-card class="readOnly">
+        <mat-card-header>
+          <button mat-card-avatar mat-icon-button (click)="openDialog('getElectionWinner')">
+            <mat-icon class="iconMargin">info</mat-icon>
+          </button>
+          <mat-card-title>Get Election Winner</mat-card-title>
+          <mat-card-subtitle><em>Ensure deadline has expired</em></mat-card-subtitle>
+          <mat-card-subtitle *ngIf="election.blockTimestamp"><em>Latest block timestamp:
+              {{election.blockTimestamp}}</em></mat-card-subtitle>
+        </mat-card-header>
+        <mat-card-content>
+          <mat-form-field>
+            <input type="number" matInput #eIDwinner placeholder="Election ID">
+          </mat-form-field>
+          <button mat-raised-button id="getElectionWinnerButton"
+            (click)="getElectionWinner(eIDwinner.value)">Get</button>
+        </mat-card-content>
+      </mat-card>
+    </div>
+    <div class="col-6" *ngIf="proposal.winner">
+      <img *ngIf="proposal.winner !== 'TIE'" id="winning-gif" src="https://fuguefoundation.org/images/gifs/homer-dance.gif"
+        alt="Homer victory dance" />
+      <img *ngIf="proposal.winner == 'TIE'" id="tie-gif" src="https://fuguefoundation.org/images/gifs/homer-think.gif"
+        alt="Homer thinking" />
+      <h2><span *ngIf="proposal.winner !== 'TIE'">The winner is </span><span class="ff-link">{{proposal.winner}}!</span>
+      </h2>
+    </div>
+  </div> <!-- end row -->
+
+  <div class="row">
+    <div class="col-6">
+      <form [formGroup]="revokeVoterForm">
+        <mat-card class="adminOnly">
+          <mat-card-header>
+            <button mat-card-avatar mat-icon-button (click)="openDialog('revokeVoter')">
+              <mat-icon class="iconMargin">info</mat-icon>
+            </button>
+            <mat-card-title>Revoke Voter Role</mat-card-title>
+            <mat-card-subtitle><em>Only admin can call</em></mat-card-subtitle>
+          </mat-card-header>
+          <mat-card-content>
+            <mat-form-field>
+              <input matInput type="text" id="revokeAddr" placeholder="Address" (change)="setRevokeAddr($event)"
+                formControlName="revokeAddr">
+              <mat-error *ngIf="revokeVoterForm.invalid">{{revokeVoterErrorMsg('revokeAddr')}}</mat-error>
+            </mat-form-field>
+            <button mat-raised-button id="revokeVoter" (click)="revokeVoter()"
+              [disabled]="!revokeVoterForm.valid">Revoke</button>
+          </mat-card-content>
+        </mat-card>
+      </form>
+    </div>
+    <div class="col-6">
+    </div>
+  </div> <!-- end row -->
+</div><!-- container-->

@@ -38,9 +38,9 @@ export class Web3Service {
         heading: "Donation Prep",
         wallets: [
             { walletName: 'metamask' },
-            { walletName: 'authereum' },
             { walletName: 'opera' },
-            { walletName: "dapper"}
+            { walletName: "status"},
+            { walletName: "coinbase"}
         ]
     },
     walletCheck: [

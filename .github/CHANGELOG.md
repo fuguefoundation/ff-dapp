@@ -1,3 +1,10 @@
+## 20210614
+
+* Incorporated voting functionality on Ropsten
+    * new Vote component
+    * updates to `etherscan.service` and `explore.component`
+* Added Truffle Contract
+
 ## 20210214
 
 * Changed repo from `https` to `ssh` version control

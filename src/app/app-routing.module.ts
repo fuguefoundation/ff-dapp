@@ -7,6 +7,7 @@ import { DonateComponent }   from './donate/donate.component';
 import { OrgsComponent }      from './orgs/orgs.component';
 import { OrgDetailComponent }  from './org-detail/org-detail.component';
 import { AboutComponent }      from './about/about.component';
+import { VoteComponent }      from './vote/vote.component';
 import { ExploreComponent }      from './explore/explore.component';
 import { PageNotFoundComponent }      from './page-not-found/page-not-found.component';
 
@@ -46,6 +47,11 @@ const routes: Routes = [
 		component: AboutComponent,
 		data: {title: "About | Fugue Foundation"}
 	},
+    {
+		path: 'vote',
+		component: VoteComponent,
+		data: {title: "Vote | Fugue Foundation"}
+    },
     {
 		path: 'explore',
 		component: ExploreComponent,
