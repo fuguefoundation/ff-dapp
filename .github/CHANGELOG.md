@@ -4,6 +4,10 @@
     * new Vote component
     * updates to `etherscan.service` and `explore.component`
 * Added Truffle Contract
+* Update Angular v12; Update Angular Material v12 using `ng update`, which automatically altered several core documents as well as some of the docs in `src`
+* Had to make adjustments to `polyfills.ts`, `index.html`, `tsconfig.app.json`, and add
+`paths` to `tsconfig.json` to address browser compatability errors
+* Updated all remaining packages to current version
 
 ## 20210214
 

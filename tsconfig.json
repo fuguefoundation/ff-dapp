@@ -14,7 +14,27 @@
     "lib": [
       "es2018",
       "dom"
-    ]
+    ],
+    "paths": {
+      "crypto": [
+        "node_modules/crypto-js"
+      ],
+      "os": [
+        "node_modules/os-browserify"
+      ],
+      "stream": [
+        "node_modules/stream-browserify"
+      ],
+      "http": [
+        "node_modules/https-browserify"
+      ],
+      "https": [
+        "node_modules/https-browserify"
+      ],
+      "vm": [
+        "node_modules/vm-browserify"
+      ],
+    }
   },
   "angularCompilerOptions": {
     "fullTemplateTypeCheck": true,
