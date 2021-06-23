@@ -1,3 +1,9 @@
+## 20210622
+
+* fixed `polyfills.js` issue with `process` and `Buffer` errors
+* removed `process` script from index.html
+* improved `explore` to connect vote contract events through Etherscan API
+
 ## 20210614
 
 * Incorporated voting functionality on Ropsten

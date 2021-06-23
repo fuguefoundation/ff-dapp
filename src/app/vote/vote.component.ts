@@ -412,7 +412,6 @@ export class VoteComponent implements OnInit {
     //   this.setStatus('Not loaded');
     //   return;
     // }
-
     try {
       const deployedElection = await this.ELECTION.deployed();
       console.log(deployedElection);

@@ -19,7 +19,7 @@
       </ul>
     </div>
     <div class="col-6">
-      <mat-card class="canCall">
+      <!-- <mat-card class="canCall">
         <mat-card-header>
           <button mat-card-avatar mat-icon-button (click)="openDialog('newVoterRequest')">
             <mat-icon class="iconMargin">info</mat-icon>
@@ -29,7 +29,7 @@
         <mat-card-content>
           <button mat-raised-button id="newVoterRequest" (click)="newVoterRequest(walletState.address)">Request</button>
         </mat-card-content>
-      </mat-card>
+      </mat-card> -->
       <div *ngIf="tx">
         <h3>Transactions</h3>
         <p><a class="ff-link" href="https://ropsten.etherscan.io/tx/{{tx.hash}}" target="_blank">View on Etherscan</a>
