@@ -6,11 +6,17 @@
 
 ## About the Project
 
-[Fugue Foundation](https://fuguefoundation.org) is a nonprofit dedicated to using open source, decentralized technology to achieve charitable goals rooted in the principles of effective altruism. Read this [blog post](https://blog.fuguefoundation.org/ff-platform-overiew/) to learn more about the use case and architecture of our flagship project, the Fugue Foundation charitable donation platform and effective altruism research API.
+[Fugue Foundation](https://fuguefoundation.org) is a nonprofit dedicated to using open source, decentralized technology to achieve charitable goals rooted in the principles of effective altruism (EA). Read this [blog post](https://blog.fuguefoundation.org/ff-platform-overiew/) to learn more about the use case and architecture of our flagship project, the Fugue Foundation charitable donation platform and effective altruism research API.
+
+This dapp also includes the following functionality, with more features on the way:
+* Data queries of EA charities through a RESTful API
+* Decentralized voting platform (Ropsten testnet) for registered voters
+* Link to crypto donation impact calculator
+* Explore on-chain data from the donation and voting contracts
 
 ## Setup
 
-Have a look at a working [prototype](https://fuguefoundation.org/dev/prototype_v0).
+Have a look at a working [prototype](https://fuguefoundation.org/dev/dapp).
 
 1. Clone the repo and `npm install`
 2. Uncomment lines in following files to allow for local development with the HTTP requests:
@@ -41,9 +47,9 @@ The live prototype is pulling data from a RESTful API, and the `web3` occurs on 
 This is an open source project. Contributions are welcomed & encouraged! :smile: If you'd like to improve the code base, please see [Contributing Guidelines](https://github.com/fuguefoundation/ff-dapp/blob/master/.github/CONTRIBUTING.md).
 
 ## Workspace
-* Angular: 10.0.2
-* Angular CLI: 10.0.1
-* Node: 12.16.1
+* Angular: v12
+* Angular CLI: v12
+* Node: v14
 
 ## References
 * [Web3](https://github.com/ethereum/wiki/wiki/JavaScript-API)

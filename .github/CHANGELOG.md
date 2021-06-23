@@ -1,3 +1,8 @@
+## 20210623
+
+* Update to README
+* Change of MB warning in `angular.json`
+
 ## 20210622
 
 * fixed `polyfills.js` issue with `process` and `Buffer` errors
